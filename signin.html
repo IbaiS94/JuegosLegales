@@ -22,13 +22,25 @@
 
 <h2>Registrarse</h2>
 <div class="cajaregistro">
-<form action="registrado.html" name="registro">
+<form action="registrado.html" name="registro" method="post">
+    <br>
     <label for="nombre"><b>Nombre</b></label>
     <input type="text" name="nombre" placeholder="Ej: Carlos">
     <br>
     <label for="apellido"><b>Apellido</b></label>
     <input type="text" name="apellido" placeholder="Ej: Sologuestoa">
     <br>
+    <label class="espaciarder64" for="dni"><b>DNI</b></label>
+    <input type="text" name="dni" placeholder="12345678-A">
+    <br>
+    <label for="telefono"><b>Teléfono</b></label>
+    <input type="tel" name="telefono" placeholder="123456789">
+    <br>
+    <label class="bloquenomlargo" for="fechanac"><b>Fecha de<br>nacimiento</b></label>
+    <input type="text" name="fechanac" placeholder="01-01-0001">
+    <br>
+    <label class="espaciarder42" for="email"><b>Email</b></label>
+    <input type="email" name="email" placeholder="ejemplo@email.com">
 
     <input class="botongeneral" type="button" name="enviar" value="Enviar" onclick="comprobardatos()">
 </form>
