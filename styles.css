@@ -70,3 +70,16 @@ input:hover{
     text-align: center;
     align-items: center;
 }
+
+.espaciarder64{
+    margin-left: 64px;
+}
+
+.espaciarder42{
+    margin-left: 47px;
+}
+
+.bloquenomlargo{
+    font-size: 27px;
+    display: inline-block;
+}
