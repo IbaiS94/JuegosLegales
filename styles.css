@@ -62,13 +62,13 @@ input:hover{
 
 .cajaregistro{
     font-size: 35px;
-    margin-left: 890px;
+    margin: 0 auto;
     vertical-align: middle;
+    align-self: center;
     width: 700px;
     height: 1000px;
     background-color: white;
     text-align: center;
-    align-items: center;
 }
 
 .espaciarder64{
@@ -83,3 +83,4 @@ input:hover{
     font-size: 27px;
     display: inline-block;
 }
+
