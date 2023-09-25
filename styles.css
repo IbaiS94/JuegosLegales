@@ -101,3 +101,15 @@ input:hover{
     font-size: 12px;
     display: inline-block;
 }
+
+.cajatextogrande{
+    font-size: 35px;
+    margin: 0 auto;
+    margin-bottom: 250px;
+    vertical-align: middle;
+    align-self: center;
+    width: 1800px;
+    height: 1000px;
+    background-color: white;
+    text-align: center;
+}
