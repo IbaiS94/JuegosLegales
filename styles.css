@@ -63,10 +63,23 @@ input:hover{
 .cajaregistro{
     font-size: 35px;
     margin: 0 auto;
+    margin-bottom: 250px;
     vertical-align: middle;
     align-self: center;
     width: 700px;
-    height: 1000px;
+    height: 550px;
+    background-color: white;
+    text-align: center;
+}
+
+.cajainicio{
+    font-size: 35px;
+    margin: 0 auto;
+    margin-bottom: 250px;
+    vertical-align: middle;
+    align-self: center;
+    width: 700px;
+    height: 350px;
     background-color: white;
     text-align: center;
 }
@@ -84,3 +97,7 @@ input:hover{
     display: inline-block;
 }
 
+.letrapequeña{
+    font-size: 12px;
+    display: inline-block;
+}
