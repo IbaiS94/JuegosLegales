@@ -33,6 +33,19 @@ input:hover{
     border-width: 1.5px;
 }
 
+select{
+    height: 30px;
+    width: 350px;
+    border-color: yellow;
+    border-radius: 10px;
+    border-width: 1px;
+}
+
+select:hover{
+    border-color: red;
+    border-width: 1.5px;
+}
+
 .botongeneral{
     color: black;
     background-color: yellow;
@@ -84,12 +97,28 @@ input:hover{
     text-align: center;
 }
 
+.cajamoddatos{
+    font-size: 35px;
+    margin: 0 auto;
+    margin-bottom: 250px;
+    vertical-align: middle;
+    align-self: center;
+    width: 700px;
+    height: 700px;
+    background-color: white;
+    text-align: center;
+}
+
 .espaciarder64{
     margin-left: 64px;
 }
 
 .espaciarder42{
     margin-left: 47px;
+}
+
+.espaciarder11{
+    margin-left: 11px;
 }
 
 .bloquenomlargo{
@@ -112,4 +141,15 @@ input:hover{
     height: 1000px;
     background-color: white;
     text-align: center;
+}
+.enlacecentral{
+    font-size: 35px;
+    align-self: center;
+    color: black;
+    background-color: yellow;
+}
+
+.enlacecentral:hover{
+    color: white;
+    background-color: red;
 }
