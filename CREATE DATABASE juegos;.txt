@@ -9,4 +9,4 @@ sudo apt-get install mariadb-server mariadb-client -y
 //instalar PHP!!!!!!!!!!!!!!!!!!! linux porfa
 sudo apt-get install php
 ejecutar php -s localhost:8000 //EN LOCALIZACION DE SCRIPT PHP!!!!!!!!!!!!! >:(
-RECORDAR CAMBIAR DIRECCION DE ANADIRJUEGO.HTML DE LOCALHOST A LO ADECUADO DESPUES DE DOCKER
+RECORDAR CAMBIAR DIRECCION DE ANADIRJUEGO.HTML DE LOCALHOST A LO ADECUADO DESPUES DE DOCKER.
