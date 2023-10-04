@@ -16,10 +16,5 @@ if(isset($_POST['submit'])) {
   $link=$_POST['link'];
 $q = "INSERT INTO juegosAnadidos (Nombre, Desarrollador, Puntuacion, Genero, Ano, Link)
   VALUES ('$nombre', '$desarrollador', '$puntuacion','$genero','$ano','$link')";
-     if (!mysqli_query($dbconnect, $q)) {
-        die('An error occurred when submitting your review.');
-    } else {
-      echo "Thanks for your review.";
-    }
 }
 ?>
