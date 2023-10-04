@@ -3,5 +3,9 @@ USE juegos
 CREATE TABLE juegosAnadidos(Nombre VARCHAR(100) NOT NULL PRIMARY KEY, Desarrollador VARCHAR(100), Puntuacion DOUBLE, Genero VARCHAR(11), Ano YEAR, Link VARCHAR(100));
 GRANT ALL ON juegos.* TO juegosacceso@localhost IDENTIFIED BY 'admin';
 
-
-//instalar PHP!!!!!!!!!!!!!!!!!!!
+//maria
+curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup | sudo bash
+sudo apt-get install mariadb-server mariadb-client -y
+//instalar PHP!!!!!!!!!!!!!!!!!!! linux porfa
+sudo apt-get install php
+ejecutar php -s localhost:8000 //EN LOCALIZACION DE SCRIPT PHP!!!!!!!!!!!!! >:(
