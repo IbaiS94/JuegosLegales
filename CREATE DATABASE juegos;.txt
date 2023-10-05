@@ -3,9 +3,6 @@ USE juegos
 CREATE TABLE juegosAnadidos(Nombre VARCHAR(100) NOT NULL PRIMARY KEY, Desarrollador VARCHAR(100), Puntuacion DOUBLE, Genero VARCHAR(11), Ano YEAR, Link VARCHAR(100));
 GRANT ALL ON juegos.* TO juegosacceso@localhost IDENTIFIED BY 'admin';
 
-PARA INSTALAR COSAS QUE SOLO ENTIENDE IBAI:
-sudo apt-get install php-mysqli
-
 //maria
 curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup | sudo bash
 sudo apt-get install mariadb-server mariadb-client -y
