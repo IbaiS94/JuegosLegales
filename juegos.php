@@ -35,21 +35,16 @@
         $username='juegosacceso';
         $password='admin';
         $host='localhost';
-        $db = 'juegos'
-        $conn = mysqli_connect($host, $username, $password, $db) or die("No se pudo conectar con la base de datos.");
+        $db = 'juegos';
+        $conn = mysqli_connect($host,$username,$password,$db) or die("No se pudo conectar con la base de datos.");
         //$db = mysqli_select_db(,$conn) or die("No se pudo conectar con la base de datos.");
-        $lista = mysqli_query($conn, "SELECT * FROM juegos");
-    ?>
+        $lista = mysqli_query($conn, "SELECT * FROM juegosAnadidos"); ?>
+   
 
         
-        <?php
-            ////<td>{$fila\['juego_nombre'\]}</td>, el atribute 7 es el id
-            if(mysqli_num_rows($lista)<1){
-                echo "Sin resultados.";
-            }else{
-            while($fila = mysqli_fetch_assoc($lista)){
-                echo
-                "<table>
+       
+
+          <table>
                 <thread>
                     <tr>
                         <th>Nombre</th>
@@ -58,34 +53,37 @@
                         <th>A&ntilde;o</th>
                         <th>Editar</th>
                         <th>Borrar</th>
-                    <tr>
+                    </tr>
                 </thread>
                 <tbody>
+        <?php
+            while($fila = mysqli_fetch_assoc($lista)){
+                echo
+                "
                     <tr>
-                        <td>{$fila[0]}</td>
-                        <td>{$fila[1]}</td>
-                        <td>{$fila[2]}</td>
-                        <td>{$fila[3]}</td>
-                        <td>
-                            <form action='borrarjuego.php' method='post'>
-                                <input type='hidden' value={$fila[7]}>
-                                <input type='submit' class='botongeneral' value='Borrar'>
-                            </form>
-                        </td>
+                        <td>{$fila['Nombre']}</td>
+                        <td>{$fila['Puntuacion']}</td>
+                        <td>{$fila['Genero']}</td>
+                        <td>{$fila['Ano']}</td>
                         <td>
                             <form action='editarjuego.php' method='post'>
-                                <input type='hidden' value={$fila[7]}>
+                                <input type='hidden' value={$fila['Nombre']}>
                                 <input type='submit' class='botongeneral' value='Editar'>
                             </form>
                         </td>
-                    <tr>";
-            }   
-            }
-        ?>
-        </tbody>
+                        <td>
+                          <form action='borrarjuego.php' method='post'>
+                                <input type='hidden' value={$fila['Nombre']}>
+                                <input type='submit' class='botongeneral' value='Borrar'>
+                            </form>
+                          
+                        </td>
+                    <tr>
+           
+        
+       
+        ";} mysqli_close($conn); ?>   </tbody>
         </table>
-        <?php mysqli_close($conn); ?>  
 </div>
-
 </body>
 </html>
