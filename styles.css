@@ -46,12 +46,28 @@ select:hover{
     border-width: 1.5px;
 }
 
+table{
+    align-self: center;
+    width: 100%;
+}
+
 .botongeneral{
     color: black;
     background-color: yellow;
 }
 
 .botongeneral:hover{
+    color: white;
+    background-color: red;
+}
+
+.botonreduc{
+    color: black;
+    background-color: yellow;
+    width: 125px;
+}
+
+.botonreduc:hover{
     color: white;
     background-color: red;
 }
@@ -138,7 +154,22 @@ select:hover{
     vertical-align: middle;
     align-self: center;
     width: calc(100vw - 200px);
-    height: 1000px;
+    
+    display: block;
+    overflow: auto;
+    /*height: calc(100vh - 100px); /*1000px;*/
+    background-color: white;
+    text-align: center;
+}
+
+.cajaborrado{
+    font-size: 35px;
+    margin: 0 auto;
+    margin-bottom: 250px;
+    vertical-align: middle;
+    align-self: center;
+    width: 60vw;
+    height: 350px;
     background-color: white;
     text-align: center;
 }
