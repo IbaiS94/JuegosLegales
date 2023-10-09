@@ -67,14 +67,14 @@
                         <td>{$fila['Ano']}</td>
                         <td>
                             <form action='editarjuego.php' method='post'>
-                                <input type='hidden' value={$fila['Nombre']}>
-                                <input type='submit' class='botongeneral' value='Editar'>
+                                <input type='hidden' name='Nombre' value={$fila['Nombre']}>
+                                <input type='submit' class='botonreduc' value='Editar'>
                             </form>
                         </td>
                         <td>
                           <form action='borrarjuego.php' method='post'>
-                                <input type='hidden' value={$fila['Nombre']}>
-                                <input type='submit' class='botongeneral' value='Borrar'>
+                                <input type='hidden' name='Nombre' value={$fila['Nombre']}>
+                                <input type='submit' class='botonreduc' value='Borrar'>
                             </form>
                           
                         </td>
