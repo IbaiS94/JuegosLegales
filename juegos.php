@@ -23,8 +23,8 @@
     <a href="signin.html">Sign in</a>
     <a href="about.html">About</a>
 </div>
+<h2>Juegos</h2>
 
-<br>
 <div class="cajatextogrande">
     <br>
     <a class="enlacecentral" href="anadirjuego.html">A&ntilde;adir juego</a>
@@ -84,6 +84,10 @@
        
         ";} mysqli_close($conn); ?>   </tbody>
         </table>
+        <br>
+        <br>
+        <br>
+        <br>
 </div>
 </body>
 </html>
