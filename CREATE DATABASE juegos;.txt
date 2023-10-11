@@ -1,7 +1,7 @@
 CREATE DATABASE juegos;
 USE juegos
 CREATE TABLE juegosAnadidos(Nombre VARCHAR(100) NOT NULL PRIMARY KEY, Desarrollador VARCHAR(100), Puntuacion DOUBLE, Genero VARCHAR(11), Ano YEAR, Link VARCHAR(100));
-CREATE TABLE usuarios(Nombre VARCHAR(20), Apellido VARCHAR(50), DNI CHAR(10) NOT NULL PRIMARY KEY, Telefono CHAR(9),Fechanac DATE, email VARCHAR(50));
+CREATE TABLE usuarios(Nombre VARCHAR(20), Apellido VARCHAR(50),PW VARCHAR(20), DNI CHAR(10) NOT NULL PRIMARY KEY, Telefono CHAR(9),Fechanac DATE, email VARCHAR(50));
 GRANT ALL ON juegos.* TO juegosacceso@localhost IDENTIFIED BY 'admin';
 
 //maria
