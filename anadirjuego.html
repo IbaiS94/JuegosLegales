@@ -27,6 +27,7 @@
 
 <div class="cajaregistro">
 <form action="http://localhost:8000/index.php" name="formulario" method="POST"> 
+    <!-->    //MODIFICAR LO DEL LOCALHOST ERA PARA PROBAR    <!-->
     <br>
     <label for="nombre"><b>Nombre</b></label>
     <input type="text" name="nombre" placeholder="Ej: Super Mario Bros">
@@ -35,7 +36,7 @@
     <input type="text" name="desa" placeholder="Ej: Nintendo">
     <br>
     <label for="puntu"><b>Puntuaci&oacute;n</b></label>
-    <input type="number" name="puntu" max=10 min=0 placeholder="Ej: 9.5">
+    <input type="number" name="puntu" max=10 placeholder="Ej: 9.5">
     <br>
     <label for="gen"><b>G&eacute;nero</b></label>
 
@@ -53,7 +54,8 @@
     <label class="bloquenomlargo" for="link"><b>Link de<br>descarga</b></label>
     <input type="text" name="link" placeholder="Ej: google.com">
 
-    <input type="submit" name="enviar" value="Enviar" onclick="comprobardatosjuego()">
+    <input type="hidden" name="confirmar" value="confirmar">
+    <input type="button" class="botongeneral" name="enviar" value="enviar" onclick="comprobardatosjuego()">
 </form>
 
 </div>
