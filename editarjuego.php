@@ -28,7 +28,7 @@
 	$nom = $_POST['Nombre'];
         $username='juegosacceso';
         $password='admin';
-        $host='localhost';
+        $host='db';
         $db = 'juegos';
         $conn = mysqli_connect($host,$username,$password,$db) or die("No se pudo conectar con la base de datos.");
         //$db = mysqli_select_db(,$conn) or die("No se pudo conectar con la base de datos.");

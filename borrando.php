@@ -30,7 +30,7 @@
     $nom = substr($nom, 1);
     $username='juegosacceso';
     $password='admin';
-    $host='localhost';
+    $host='db';
     $db = 'juegos';
     $conn = mysqli_connect($host,$username,$password,$db)  or die("No se pudo conectar con la base de datos.");
     $query = "DELETE FROM juegosAnadidos WHERE Nombre='".$nom."'";
