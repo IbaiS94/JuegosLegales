@@ -1,10 +1,27 @@
+
+<?php
+$username='juegosacceso';
+$password='admin';
+$host='db';
+$db = 'juegos';
+
+$conn = mysqli_connect($host, $username, $password, $db);
+
+if (!$conn) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
+
+$lista = mysqli_query($conn, "SELECT * FROM juegosAnadidos");
+
+if ($lista) {
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Juegos Legales</title>
 <link rel="stylesheet" href="styles.css">
 <!--<link rel="icon" type="image/x-icon" href="skullspining.png">-->
-
 </head>
 
 <body>
@@ -31,35 +48,21 @@
     <br>
     <p>Aqu&iacute; se mostrar&aacute;n los juegos presentes en la base de datos.</p>
 
-    <?php
-        $username='juegosacceso';
-        $password='admin';
-        $host='localhost';
-        $db = 'juegos';
-        $conn = mysqli_connect($host,$username,$password,$db) or die("No se pudo conectar con la base de datos.");
-        //$db = mysqli_select_db(,$conn) or die("No se pudo conectar con la base de datos.");
-        $lista = mysqli_query($conn, "SELECT * FROM juegosAnadidos"); ?>
-   
-
-        
-       
-
-          <table>
-                <thread>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Puntuaci&oacute;n</th>
-                        <th>G&eacute;nero</th>
-                        <th>A&ntilde;o</th>
-                        <th>Editar</th>
-                        <th>Borrar</th>
-                    </tr>
-                </thread>
-                <tbody>
+    <table>
+        <thread>
+            <tr>
+                <th>Nombre</th>
+                <th>Puntuaci&oacute;n</th>
+                <th>G&eacute;nero</th>
+                <th>A&ntilde;o</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+            </tr>
+        </thread>
+        <tbody>
         <?php
-            while($fila = mysqli_fetch_assoc($lista)){
-                echo
-                "
+            while ($fila = mysqli_fetch_assoc($lista)) {
+                echo "
                     <tr>
                         <td>{$fila['Nombre']}</td>
                         <td>{$fila['Puntuacion']}</td>
@@ -76,13 +79,27 @@
                                 <input type='hidden' name='Nombre' value={$fila['Nombre']}>
                                 <input type='submit' class='botonreduc' value='Borrar'>
                             </form>
-                          
                         </td>
-                    <tr>
-           
-        
-       
-        ";} mysqli_close($conn); ?>   </tbody>
+                    </tr>";
+            }
+        ?>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+</body>
+</html>
+
+<?php
+} else {
+    echo "Error en la consulta: " . mysqli_error($conn);
+}
+
+mysqli_close($conn);
+?>   </tbody>
         </table>
         <br>
         <br>
