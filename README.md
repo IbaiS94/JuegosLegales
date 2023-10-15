@@ -14,6 +14,8 @@ Para poder hacer funcionar el sistema web es necesario tener docker instalado, e
 
 ```bash
 $ sudo apt install docker
+```
+```bash
 $ sudo apt install docker-compose
 ```
 
