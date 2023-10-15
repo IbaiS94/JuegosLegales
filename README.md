@@ -4,11 +4,7 @@ Esta entraga trata de crear un servicio web desplegado en docker usando PHP, HTM
 
 # Participantes
 
-Luke Bilbao Rojo
-
-Ibai Sologuestoa Aguirrebeitia
-
-Unai Garcia
+Luken Bilbao Rojo, Ibai Sologuestoa Aguirrebeitia, Unai Garcia
 
 # Instrucciones para el despliegue
 
