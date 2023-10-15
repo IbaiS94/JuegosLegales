@@ -8,7 +8,7 @@ Luke Bilbao Rojo
 Ibai Sologuestoa Aguirrebeitia
 Unai Garcia
 
-# Como desplegarlo
+# Instrucciones para el despliegue
 
 Para poder hacer funcionar el sistema web es necesario tener docker instalado, en el caso de no estarlo, se puede hacer con estos comandos:
 
@@ -28,6 +28,8 @@ Para desplegar el sistema escrito en docker-compose.yml se utiliza este comando:
 ```bash
 $ docker-compose up
 ```
+
+# Instrucciones para la base de datos
 
 Una vez desplegado, hay que conectar la base de datos de SQL que tenemos:
 
