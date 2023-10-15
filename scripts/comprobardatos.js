@@ -115,7 +115,7 @@ function comprobardatos(){
 
     var x = /\d{4}-\d{2}-\d{2}/; //encuentra una secuencia de 2 digitos, guion, secuencia de dos digitos, guieon y secuencia de 4 digitos
     if((!x.test(fecha))||(fecha.length != 10)){//empezara a dar fallos dentro de 8000 años (cuando la fecha de nacimiento 01-01-10000 tenga sentido)
-        mensaje = mensaje.concat("El formato de la fecha de nacimiento debe ser 01-01-0001. \n")
+        mensaje = mensaje.concat("El formato de la fecha de nacimiento debe ser 0001-01-01. \n")
         error = true;
     }
 
