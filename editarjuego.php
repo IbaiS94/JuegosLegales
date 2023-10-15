@@ -16,7 +16,7 @@
 </div>
 
 <div class="topmenu">
-    <a href="index.html">Home</a>
+    <a href="index.php">Home</a>
     <a href="http://localhost:8000/juegos.php">Juegos</a>
     <a href="login.html">Log in</a>
     <a href="signin.html">Sign in</a>

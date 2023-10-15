@@ -34,7 +34,7 @@ if ($lista) {
 <!-- <h3>La legalidad es lo primero</h3> -->
 
 <div class="topmenu">
-    <a href="index.html">Home</a>
+    <a href="index.php">Home</a>
     <a href="juegos.php">Juegos</a>
     <a href="login.html">Log in</a>
     <a href="signin.html">Sign in</a>
