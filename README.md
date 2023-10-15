@@ -5,7 +5,9 @@ Esta entraga trata de crear un servicio web desplegado en docker usando PHP, HTM
 # Participantes
 
 Luke Bilbao Rojo
+
 Ibai Sologuestoa Aguirrebeitia
+
 Unai Garcia
 
 # Instrucciones para el despliegue
@@ -35,11 +37,13 @@ Una vez desplegado, hay que conectar la base de datos de SQL que tenemos:
 
 1-Acceder a http://localhost:8890
 2-Introducir el Usuario "juegosacceso" y la Contraseña "admin"
-3-Entrar en "db", hacer click en importar y elegir el archivo juegos.sql que se encuentra en esta carpeta.
+3-Entrar en "db", hacer click en importar y elegir el archivo juegos.sql que se encuentra en esta carpeta, si a la primera da error probar a importar una segunda.
 
 Para acceder a la pagina web habra que buscar en un navegador la pagina http://localhost:8000
 
-Para detener el servicio:
+# Detener el servicio
+
+Para detener el servicio "Ctrl + Z" y escribir:
 ```bash
 $ docker-compose down
 ```
