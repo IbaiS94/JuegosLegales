@@ -38,6 +38,7 @@ if ($lista) {
     <a href="juegos.php">Juegos</a>
     <a href="login.html">Log in</a>
     <a href="signin.html">Sign in</a>
+    <a href="modificardatos.php">Datos personales</a>
     <a href="about.html">About</a>
 </div>
 <h2>Juegos</h2>
