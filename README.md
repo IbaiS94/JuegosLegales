@@ -1,6 +1,6 @@
 # Descripción
 
-Esta entrega trata de crear un servicio web desplegado en docker usando PHP, HTML, CSS, JavaScript. Para la base de datos se utiliza MySQL con phpMyAdmin.
+Esta entrega trata de crear un servicio web desplegado en docker usando PHP, HTML, CSS y JavaScript. Para la base de datos se utiliza MySQL con phpMyAdmin.
 
 # Participantes
 
@@ -18,28 +18,31 @@ $ sudo apt install docker-compose
 ```
 
 Una vez esté instalado hay que crear la imagen del contenedor:
+
 ```bash
 $ docker buid -t="web" .
 ```
 
 Para desplegar el sistema escrito en docker-compose.yml se utiliza este comando:
+
 ```bash
 $ docker-compose up
 ```
 
 # Instrucciones para la base de datos
 
-Una vez desplegado, hay que conectar la base de datos de SQL que tenemos:
+Una vez desplegado, hay que conectar la base de datos de SQL:
 
-1-Acceder a http://localhost:8890
-2-Introducir el Usuario "juegosacceso" y la Contraseña "admin"
-3-Entrar en "db", hacer click en importar y elegir el archivo juegos.sql que se encuentra en esta carpeta, si a la primera da error probar a importar una segunda.
+1-Entrar a http://localhost:8890
+2-Iniciar sesión con el usuario "juegosacceso" y la contraseña "admin"
+3-Entrar en "db", hacer click en importar y elegir el archivo "juegos.sql" que se encuentra en la raiz de esta carpeta, si a la primera da error probar a importar una segunda vez.
 
-Para acceder a la pagina web habra que buscar en un navegador la pagina http://localhost:8000
+Para acceder a la pagina web habra que introducir en el navegador: http://localhost:8000
 
 # Detener el servicio
 
 Para detener el servicio "Ctrl + Z" y escribir:
+
 ```bash
 $ docker-compose down
 ```
