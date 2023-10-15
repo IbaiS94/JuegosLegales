@@ -1,6 +1,6 @@
 # Descripción
 
-Esta entraga trata de crear un servicio web desplegado en docker usando PHP, HTML, CSS, JavaScript. Para la base de datos se utiliza MySQL con phpMyAdmin.
+Esta entrega trata de crear un servicio web desplegado en docker usando PHP, HTML, CSS, JavaScript. Para la base de datos se utiliza MySQL con phpMyAdmin.
 
 # Participantes
 
