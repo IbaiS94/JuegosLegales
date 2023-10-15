@@ -34,14 +34,14 @@ $ docker-compose up
 Una vez desplegado, hay que conectar la base de datos de SQL:
 
 1-Entrar a http://localhost:8890
-2-Iniciar sesión con el usuario "juegosacceso" y la contraseña "admin"
+2-Iniciar sesión con el usuario "juegosacceso" y la contraseña "admin".
 3-Entrar en "db", hacer click en importar y elegir el archivo "juegos.sql" que se encuentra en la raiz de esta carpeta, si a la primera da error probar a importar una segunda vez.
 
-Para acceder a la pagina web habra que introducir en el navegador: http://localhost:8000
+Para acceder a la pagina web habrá que introducir en el navegador: http://localhost:8000
 
 # Detener el servicio
 
-Para detener el servicio "Ctrl + Z" y escribir:
+Para detener el servicio pulsar "Ctrl + Z" y luego escribir el comando:
 
 ```bash
 $ docker-compose down
