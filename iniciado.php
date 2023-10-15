@@ -1,5 +1,5 @@
 <?php
-$host = "localhost";
+$host = "db";
 $usuario = "juegosacceso";
 $contrasena = "admin";
 $maria = "juegos";

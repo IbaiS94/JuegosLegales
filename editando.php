@@ -34,7 +34,7 @@
     $ano = $_POST['anno'];
     $username='juegosacceso';
     $password='admin';
-    $host='localhost';
+    $host='db';
     $db = 'juegos';
     $conn = mysqli_connect($host,$username,$password,$db) or die("No se ha podido conectar con la base de datos.");
     $query = "UPDATE juegosAnadidos SET Nombre='".$nom."', Desarrollador='".$desa."', Puntuacion='".$puntu."', Genero='".$gen."', Ano='".$ano."', Link='".$link."' WHERE Nombre='".$nomviejo."'";

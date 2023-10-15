@@ -42,9 +42,34 @@ LOCK TABLES `juegosAnadidos` WRITE;
 INSERT INTO `juegosAnadidos` VALUES
 ('Starfield','Mierthesda',2,'accion',2023,'juegosdemierda.com');
 /*!40000 ALTER TABLE `juegosAnadidos` ENABLE KEYS */;
-GRANT ALL PRIVILEGES ON juegos.* TO 'juegosacceso'@'localhost' IDENTIFIED BY 'admin';
-GRANT ALL PRIVILEGES ON juegos.* TO 'juegosacceso'@'172.17.0.3' IDENTIFIED BY 'admin';
+UNLOCK TABLES;
 
+--
+-- Table structure for table `usuarios`
+--
+
+DROP TABLE IF EXISTS `usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuarios` (
+  `Nombre` varchar(20) DEFAULT NULL,
+  `Apellido` varchar(50) DEFAULT NULL,
+  `PW` varchar(20) DEFAULT NULL,
+  `DNI` char(10) NOT NULL,
+  `Telefono` char(9) DEFAULT NULL,
+  `Fechanac` date DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`DNI`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +81,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-11 21:18:42
+-- Dump completed on 2023-10-15 11:54:11
