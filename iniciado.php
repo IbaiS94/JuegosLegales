@@ -58,6 +58,7 @@ echo "<h2>Usuario identificado</h2>
     	</div>";
 }
 }
+mysqli_close($dbconnect);
 ?>
 
 </body>
