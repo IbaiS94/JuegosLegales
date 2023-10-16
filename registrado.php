@@ -57,6 +57,7 @@ echo "<h2>Usuario registrado</h2>
     		<a href=juegos.php class='enlacecentral'>Volver a Juegos</a>
     	</div>";
 }
+mysqli_close($dbconnect);
 ?>
 
 </body>
