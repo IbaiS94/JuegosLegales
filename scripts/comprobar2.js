@@ -11,13 +11,13 @@ function comprobar2(){
     var mensaje = "Problemas con el registro: \n"
     var error = false;
 
-    var x = /[abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ]+/; //solo permite estos caracteres (minimo 1)
+    var x = /[a-z]+/; //solo permite estos caracteres (minimo 1)
     if(!x.test(nom)){
         mensaje = mensaje.concat("El nombre solo puede contener letras. \n")//Se van listando los problemas en el mensaje final
         error = true;
     }
 
-    var x = /[abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ]+/; //solo permite estos caracteres (minimo 1)
+    var x = /[a-z]+/; //solo permite estos caracteres (minimo 1)
     if(!x.test(ape)){
         mensaje = mensaje.concat("El apellido solo puede contener letras. \n")
         error = true;
@@ -119,7 +119,7 @@ function comprobar2(){
         error = true;
     }
 
-    var x = /([abcdefghijklmnñopqrstuvwxyz.]@/; //(gmail.com|hotmail.com|yahoo.com|mailo.com|outlook.com|proton.me|protonmail.com))/;
+    var x = /([abcdefghijklmnñopqrstuvwxyz.]@(gmail.com|hotmail.com|yahoo.com|mailo.com|outlook.com|proton.me|protonmail.com))/;
     if(!x.test(email)||email.match(/\s/)){
         mensaje = mensaje.concat("El email debe ser del formato ejemplo@email.com y pertenecer a un proveedor conocido. \n")
         error = true;
