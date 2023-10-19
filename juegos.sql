@@ -36,9 +36,6 @@ CREATE TABLE `juegosAnadidos` (
 --
 -- Dumping data for table `juegosAnadidos`
 --
-
-LOCK TABLES `juegosAnadidos` WRITE;
-/*!40000 ALTER TABLE `juegosAnadidos` DISABLE KEYS */;
 INSERT INTO `juegosAnadidos` VALUES
 ('Starfield','Mierthesda',2,'accion',2023,'juegosdemierda.com');
 /*!40000 ALTER TABLE `juegosAnadidos` ENABLE KEYS */;
@@ -66,12 +63,6 @@ CREATE TABLE `usuarios` (
 --
 -- Dumping data for table `usuarios`
 --
-
-LOCK TABLES `usuarios` WRITE;
-/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

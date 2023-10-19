@@ -77,7 +77,7 @@
     <input type="hidden" name="nombreantiguo" value=<?php echo $nom; ?>>
     <input class="botongeneral" type="submit" name="enviar" value="Aplicar cambios" onclick="comprobardatosjuego()">
 </form>
-
+<?php mysqli_close($conn); ?>
 </div>
 
 

@@ -65,6 +65,7 @@ echo '<div class="cajamoddatos">
 
     <input class="botongeneral" type="button" name="enviar" value="Enviar" onclick="comprobar2()">
 </form>';
+mysqli_close($dbconnect);
 ?>
 </div>
 
