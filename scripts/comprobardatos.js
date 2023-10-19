@@ -119,7 +119,7 @@ function comprobardatos(){
         error = true;
     }
 
-    var x = /([abcdefghijklmnñopqrstuvwxyz.]@/;//(gmail.com|hotmail.com|yahoo.com|mailo.com|outlook.com|proton.me|protonmail.com))/;
+    var x = /[abcdefghijklmnñopqrstuvwxyz.]@/;//(gmail.com|hotmail.com|yahoo.com|mailo.com|outlook.com|proton.me|protonmail.com))/;
     if(!x.test(email)||email.match(/\s/)){
         mensaje = mensaje.concat("El email debe ser del formato ejemplo@email.com. \n"); //y pertenecer a un proveedor conocido. \n")
         error = true;
