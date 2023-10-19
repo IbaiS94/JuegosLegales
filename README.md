@@ -4,7 +4,7 @@ Esta entrega trata de crear un servicio web desplegado en docker usando PHP, HTM
 
 # Participantes
 
-Luken Bilbao Rojo, Ibai Sologuestoa Aguirrebeitia, Unai Garcia
+Luken Bilbao Rojo, Ibai Sologuestoa Aguirrebeitia, Unai Garcia Primo
 
 # Instrucciones para el despliegue
 
