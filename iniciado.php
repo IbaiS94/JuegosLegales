@@ -14,12 +14,11 @@ if($dbconnect->connect_error){
     		<a href=juegos.php class='enlacecentral'>Volver a Juegos</a>
     	</div>";
 }else{
-$user=$_POST['nombre'];
+$DNI=$_POST['DNI'];
 $pw=$_POST['pw'];
 
-$q = "Select * from usuarios WHERE Nombre='".$user."' AND PW='".$pw."'" ;
-$qDNI = "Select DNI,Nombre from usuarios WHERE Nombre='".$user."' AND PW='".$pw."'" ;
-$dame = mysqli_fetch_assoc(mysqli_query($dbconnect, $qDNI));
+$q = "Select * from usuarios WHERE DNI='".$DNI."' AND PW='".$pw."'" ;
+$dame = mysqli_fetch_assoc(mysqli_query($dbconnect, $q));
 $resultado=mysqli_query($dbconnect, $q); }
 if(mysqli_num_rows($resultado)==1){
 setcookie("IdentComo",$dame['DNI'],time()+10000);
@@ -30,7 +29,6 @@ echo '	<!DOCTYPE html>
 <script type="text/javascript" src="scripts/comprobar2.js"></script>
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-<p><strong> Hola '.$_COOKIE["Usuario"].' </strong></p>
 </head>
 <body>
 <div class="toptitle">
@@ -51,7 +49,7 @@ echo '	<!DOCTYPE html>
 	<h2>Usuario identificado</h2>
     	<div class="cajaborrado">
     		<br>
-    		<p>Te has identificado correctamente como '.$user.'</p>
+    		<p>Te has identificado correctamente como '.$dame['Nombre'].'</p>
     		<br>
     		<a href=juegos.php class="enlacecentral">Volver a Juegos</a>
     	</div>';
