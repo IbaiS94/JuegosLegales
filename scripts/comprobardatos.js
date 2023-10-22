@@ -11,20 +11,19 @@ function comprobardatos(){
     var mensaje = "Problemas con el registro: \n"
     var error = false;
 
-    var x = var x = /^[a-zA-ZáéíóúÁÉÍÓÚ\s'-]+/; //solo permite estos caracteres (minimo 1)
+    var x = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; //solo permite estos caracteres (minimo 1)
     if(!x.test(nom)){
         mensaje = mensaje.concat("El nombre solo puede contener letras. \n")//Se van listando los problemas en el mensaje final
         error = true;
     }
 
-    var x = /[abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ]+/; //solo permite estos caracteres (minimo 1)
+    var x = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; //solo permite estos caracteres (minimo 1)
     if(!x.test(ape)){
         mensaje = mensaje.concat("El apellido solo puede contener letras. \n")
         error = true;
     }
 
     var x = /\d{8}-[A-Z]{1}/;//secuencia de 8 digitos seguido de un guión y una letra mayúscula, las barras contienen la regex
-    x = x.toLowerCase();
     if(!x.test(dni)||(dni.length != 10)){ //el control de longitud hace que no se puedan introducir mas o menos caracteres de los esperados
         mensaje = mensaje.concat("El formato del DNI debe ser 12345678-A. \n")
         error = true;
@@ -121,7 +120,7 @@ function comprobardatos(){
         error = true;
     }
 
-    var x = /[abcdefghijklmnñopqrstuvwxyz0123456789.]@/;//(gmail.com|hotmail.com|yahoo.com|mailo.com|outlook.com|proton.me|protonmail.com))/;
+    var x = /[abcdefghijklmnñopqrstuvwxyz0123456789.]@/;//(gmail.com|hotmail.com|yahoo.com|mailo.com|outlook.com|proton.me|protonmail.com|ikasle.ehu.eus|ehu.eus))/;
     if(!x.test(email)||email.match(/\s/)){
         mensaje = mensaje.concat("El email debe ser del formato ejemplo@email.com. \n"); //y pertenecer a un proveedor conocido. \n")
         error = true;

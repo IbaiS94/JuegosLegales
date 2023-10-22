@@ -55,7 +55,7 @@ echo '<div class="cajamoddatos">
     <input type="text" value="'.$r["Fechanac"].'" name="fechanac" placeholder="01-01-0001">
     <br>
     <label class="espaciarder42" for="email"><b>Email</b></label>
-    <input type="email" style="text-transform: lowercase" value="'.$r["email"].'" name="email" placeholder="ejemplo@email.com">
+    <input type="email" value="'.$r["email"].'" name="email" placeholder="ejemplo@email.com">
     <br>
     <label class="bloquenomlargo" for="pass"><b>Contrase&ntilde;a<br>vieja</b></label>
     <input type="password" name="pass">

@@ -113,15 +113,13 @@ function comprobar2(){
         error = true;
     }
 
-    var currentTime = new Date();
-    var year = currentTime.getFullYear()
     var x = /\d{4}-\d{2}-\d{2}/; //encuentra una secuencia de 2 digitos, guion, secuencia de dos digitos, guieon y secuencia de 4 digitos
-    if(((!x.test(fecha))||(fecha.length != 10))||(fecha.slice(0,4)>=year)){//empezara a dar fallos dentro de 8000 años (cuando la fecha de nacimiento 01-01-10000 tenga sentido)
-        mensaje = mensaje.concat("El formato de la fecha de nacimiento debe ser 0001-01-01 y debe ser una fecha válida. \n")
+    if((!x.test(fecha))||(fecha.length != 10)){//empezara a dar fallos dentro de 8000 años (cuando la fecha de nacimiento 01-01-10000 tenga sentido)
+        mensaje = mensaje.concat("El formato de la fecha de nacimiento debe ser 0001-01-01. \n")
         error = true;
     }
 
-    var x = /[abcdefghijklmnñopqrstuvwxyz0123456789.]@/;  //(gmail.com|hotmail.com|yahoo.com|mailo.com|outlook.com|proton.me|protonmail.com))/;
+    var x = /[abcdefghijklmnñopqrstuvwxyz.]@/;  //(gmail.com|hotmail.com|yahoo.com|mailo.com|outlook.com|proton.me|protonmail.com))/;
     if(!x.test(email)||email.match(/\s/)){
         mensaje = mensaje.concat("El email debe ser del formato ejemplo@email.com y pertenecer a un proveedor conocido. \n")
         error = true;
