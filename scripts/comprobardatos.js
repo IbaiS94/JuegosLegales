@@ -24,6 +24,7 @@ function comprobardatos(){
     }
 
     var x = /\d{8}-[A-Z]{1}/;//secuencia de 8 digitos seguido de un guión y una letra mayúscula, las barras contienen la regex
+    x = x.toLowerCase();
     if(!x.test(dni)||(dni.length != 10)){ //el control de longitud hace que no se puedan introducir mas o menos caracteres de los esperados
         mensaje = mensaje.concat("El formato del DNI debe ser 12345678-A. \n")
         error = true;
