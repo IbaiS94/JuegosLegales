@@ -1,6 +1,6 @@
 body{
     font-family: 'Times New Roman', Times, serif;
-    background-color: pink;
+    background-color: lightblue; /*yellowpink*/
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
@@ -22,27 +22,27 @@ h3{
 input{
     height: 30px;
     width: 350px;
-    border-color: yellow;
+    border-color: blue;
     border-radius: 10px;
     border-width: 1px;
 
 }
 
 input:hover{
-    border-color: red;
+    border-color: purple;
     border-width: 1.5px;
 }
 
 select{
     height: 30px;
     width: 350px;
-    border-color: yellow;
+    border-color: blue;
     border-radius: 10px;
     border-width: 1px;
 }
 
 select:hover{
-    border-color: red;
+    border-color: purple;
     border-width: 1.5px;
 }
 
@@ -53,23 +53,23 @@ table{
 
 .botongeneral{
     color: black;
-    background-color: yellow;
+    background-color: lightblue;
 }
 
 .botongeneral:hover{
     color: white;
-    background-color: red;
+    background-color: rgba(200,0,255,1);
 }
 
 .botonreduc{
     color: black;
-    background-color: yellow;
+    background-color: lightblue; /*/*yellowpink*/
     width: 125px;
 }
 
 .botonreduc:hover{
     color: white;
-    background-color: red;
+    background-color: rgba(200,0,255,1);
 }
 
 
@@ -81,12 +81,12 @@ table{
 
 .topmenu a{
     color: black;
-    background-color: yellow;
+    background-color: lightblue;
 }
 
 .topmenu a:hover{
     color: white;
-    background-color: red;
+    background-color: rgba(200,0,255,1);
 }
 
 .cajaregistro{
@@ -177,10 +177,10 @@ table{
     font-size: 35px;
     align-self: center;
     color: black;
-    background-color: yellow;
+    background-color: lightblue;
 }
 
 .enlacecentral:hover{
     color: white;
-    background-color: red;
+    background-color: rgba(200,0,255,1);
 }
