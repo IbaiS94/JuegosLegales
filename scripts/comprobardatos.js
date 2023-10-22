@@ -11,7 +11,7 @@ function comprobardatos(){
     var mensaje = "Problemas con el registro: \n"
     var error = false;
 
-    var x = /[abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ]+/; //solo permite estos caracteres (minimo 1)
+    var x = var x = /^[a-zA-ZáéíóúÁÉÍÓÚ\s'-]+/; //solo permite estos caracteres (minimo 1)
     if(!x.test(nom)){
         mensaje = mensaje.concat("El nombre solo puede contener letras. \n")//Se van listando los problemas en el mensaje final
         error = true;
