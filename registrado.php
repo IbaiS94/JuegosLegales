@@ -42,7 +42,10 @@ if($dbconnect->connect_error){
 }else{
 $nombr=$_POST['nombre'];
 $ape=$_POST['apellido'];
-$pw=$_POST['pw'];
+
+$pwnohash=$_POST['pw'];
+$pw=password_hash($pwnohash,PASSWORD_BCRYPT);
+
 $dni=$_POST['dni'];
 $tele=$_POST['telefono'];
 $fechan=$_POST['fechanac'];
