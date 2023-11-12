@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `Nombre` varchar(20) DEFAULT NULL,
   `Apellido` varchar(50) DEFAULT NULL,
-  `PW` varchar(20) DEFAULT NULL,
+  `PW` varchar(70) DEFAULT NULL, /*para que quepa el hash*/
   `DNI` char(10) NOT NULL,
   `Telefono` char(9) DEFAULT NULL,
   `Fechanac` date DEFAULT NULL,
@@ -71,5 +71,24 @@ CREATE TABLE `usuarios` (
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+--
+-- Table structure for table `usuarios`
+--
+
+DROP TABLE IF EXISTS `logins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `logins` (
+  `Id` int AUTO_INCREMENT,
+  `Correcto` boolean DEFAULT 0,
+  `DNI` varchar(10) DEFAULT NULL,
+/*`PW` varchar(20) DEFAULT NULL,*/
+  `IP!` varchar(50) DEFAULT NULL,
+  `IP2` varchar(50) DEFAULT NULL,
+  `Time` timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 -- Dump completed on 2023-10-15 11:54:11
