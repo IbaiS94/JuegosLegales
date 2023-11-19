@@ -84,7 +84,7 @@ CREATE TABLE `logins` (
   `Correcto` boolean DEFAULT 0,
   `DNI` varchar(10) DEFAULT NULL,
 /*`PW` varchar(20) DEFAULT NULL,*/
-  `IP!` varchar(50) DEFAULT NULL,
+  `IP1` varchar(50) DEFAULT NULL,
   `IP2` varchar(50) DEFAULT NULL,
   `Time` timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
   PRIMARY KEY (`Id`)
