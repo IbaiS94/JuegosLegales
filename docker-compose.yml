@@ -9,6 +9,8 @@ web:
    volumes:
      - .:/var/www/html/
 
+
+
 db:
   image: mariadb:10.8.2
   restart: always

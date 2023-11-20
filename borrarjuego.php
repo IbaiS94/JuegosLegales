@@ -31,10 +31,10 @@
             <?php
                 /*include 'juegos.php';*/
                 /*$nom = $nombre;*/
-                $nomjuego = $_POST['Nombre'];
+                $nomjuego = strip_tags(htmlspecialchars($_POST['Nombre'], ENT_QUOTES, 'UTF-8'));
                 echo "<br>";
                 echo "¿Seguro que quieres borrar el juego '";
-                echo $_POST["Nombre"];
+                echo $nomjuego;
                 echo "'?<br><br>";
             ?>
             <input type='hidden' name='nom' value=" <?php echo $nomjuego; ?> ">
@@ -44,3 +44,4 @@
 </body>
 
 </html>
+

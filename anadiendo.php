@@ -33,12 +33,12 @@ if($dbconnect->connect_error){
 	die("error de conexion");
 }
 if(isset($_POST['confirmar'])) {
-  $nombre=$_POST['nombre'];
-  $desarrollador=$_POST['desa'];
-  $puntuacion=$_POST['puntu'];
-  $genero=$_POST['gen'];
-  $ano=$_POST['anno'];
-  $link=$_POST['link'];
+  $nombre = htmlspecialchars($_POST['nombre']);
+  $desarrollador = htmlspecialchars($_POST['desa']);
+  $puntuacion = htmlspecialchars($_POST['puntu']);
+  $genero = htmlspecialchars($_POST['gen']);
+  $ano = htmlspecialchars($_POST['anno']);
+  $link = htmlspecialchars($_POST['link']);
 $q = "INSERT INTO juegosAnadidos (Nombre, Desarrollador, Puntuacion, Genero, Ano, Link) VALUES ('$nombre', '$desarrollador', '$puntuacion','$genero','$ano','$link')";
       if (mysqli_query($dbconnect, $q)) {
         echo "<h2>Juego a&ntilde;adido</h2>

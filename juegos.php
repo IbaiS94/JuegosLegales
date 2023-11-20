@@ -63,26 +63,26 @@ if ($lista) {
         <tbody>
         <?php
             while ($fila = mysqli_fetch_assoc($lista)) {
-                echo "
-                    <tr>
-                        <td>{$fila['Nombre']}</td>
-                        <td>{$fila['Puntuacion']}</td>
-                        <td>{$fila['Genero']}</td>
-                        <td>{$fila['Ano']}</td>
-                        <td>
-                            <form action='editarjuego.php' method='post'>
-                                <input type='hidden' name='Nombre' value={$fila['Nombre']}>
-                                <input type='submit' class='botonreduc' value='Editar'>
-                            </form>
-                        </td>
-                        <td>
-                          <form action='borrarjuego.php' method='post'>
-                                <input type='hidden' name='Nombre' value={$fila['Nombre']}>
-                                <input type='submit' class='botonreduc' value='Borrar'>
-                            </form>
-                        </td>
-                    </tr>";
-            }
+        echo "
+            <tr>
+                <td>{$fila['Nombre']}</td>
+                <td>{$fila['Puntuacion']}</td>
+                <td>{$fila['Genero']}</td>
+                <td>{$fila['Ano']}</td>
+                <td>
+                    <form action='editarjuego.php' method='post'>
+                        <input type='hidden' name='Nombre' value='" . htmlspecialchars($fila['Nombre'], ENT_QUOTES) . "'>
+                        <input type='submit' class='botonreduc' value='Editar'>
+                    </form>
+                </td>
+                <td>
+                    <form action='borrarjuego.php' method='post'>
+                        <input type='hidden' name='Nombre' value='" . htmlspecialchars($fila['Nombre'], ENT_QUOTES) . "'>
+                        <input type='submit' class='botonreduc' value='Borrar'>
+                    </form>
+                </td>
+            </tr>";
+    }
         ?>
         </tbody>
     </table>
