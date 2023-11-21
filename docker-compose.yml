@@ -8,8 +8,7 @@ web:
      - db
    volumes:
      - .:/var/www/html/
-
-
+     - ./log:/var/log/
 
 db:
   image: mariadb:10.8.2
@@ -17,7 +16,7 @@ db:
   volumes:
     - ./mysql:/var/lib/mysql
   environment:
-    MYSQL_ROOT_PASSWORD: root
+    MYSQL_ROOT_PASSWORD: admin
     MYSQL_USER: juegosacceso
     MYSQL_PASSWORD: admin
     MYSQL_DATABASE: juegos
