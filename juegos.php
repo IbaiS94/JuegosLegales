@@ -1,5 +1,5 @@
-
 <?php
+header('X-Frame-Options: DENV');
 $username='juegosacceso';
 $password='admin';
 $host='db';
@@ -36,16 +36,16 @@ if ($lista) {
 <div class="topmenu">
     <a href="index.php">Home</a>
     <a href="juegos.php">Juegos</a>
-    <a href="login.html">Log in</a>
-    <a href="signin.html">Sign in</a>
+    <a href="login.php">Log in</a>
+    <a href="signin.php">Sign in</a>
     <a href="modificardatos.php">Datos personales</a>
-    <a href="about.html">About</a>
+    <a href="about.php">About</a>
 </div>
 <h2>Juegos</h2>
 
 <div class="cajatextogrande">
     <br>
-    <a class="enlacecentral" href="anadirjuego.html">A&ntilde;adir juego</a>
+    <a class="enlacecentral" href="anadirjuego.php">A&ntilde;adir juego</a>
     <br>
     <p>Aqu&iacute; se mostrar&aacute;n los juegos presentes en la base de datos.</p>
 

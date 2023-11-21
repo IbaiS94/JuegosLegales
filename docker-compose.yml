@@ -10,6 +10,7 @@ web:
      - .:/var/www/html/
      - ./log:/var/log/
 
+
 db:
   image: mariadb:10.8.2
   restart: always

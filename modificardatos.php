@@ -1,3 +1,7 @@
+<?php
+header('X-Frame-Options: DENV');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +21,10 @@
 <div class="topmenu">
     <a href="index.php">Home</a>
     <a href="juegos.php">Juegos</a>
-    <a href="login.html">Log in</a>
-    <a href="signin.html">Sign in</a>
+    <a href="login.php">Log in</a>
+    <a href="signin.php">Sign in</a>
     <a href="modificardatos.php">Datos personales</a>
-    <a href="about.html">About</a>
+    <a href="about.php">About</a>
 </div>
 
 <h2>Modificar datos</h2>

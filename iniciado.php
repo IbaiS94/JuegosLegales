@@ -1,4 +1,5 @@
 <?php
+header('X-Frame-Options: DENV');
 $host = "db";
 $usuario = "juegosacceso";
 $contrasena = "admin";
