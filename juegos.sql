@@ -56,6 +56,7 @@ CREATE TABLE `usuarios` (
   `Telefono` char(9) DEFAULT NULL,
   `Fechanac` date DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
+  `galletita` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`DNI`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

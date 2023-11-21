@@ -37,8 +37,11 @@ $dbconnect=mysqli_connect($host,$usuario,$contrasena,$maria);
 if($dbconnect->connect_error){
 	die("error de conexion");
 }
+$fecha_actual = date("Y-m-d H:i:s");
+$sq= "UPDATE logins NATURAL JOIN usuarios SET galletita = 'CADUCADA' WHERE Correcto = 1 AND DATEDIFF(second, NOW(), MAX(Time)) > 5 GROUP BY DNI";//UPDATE logins NATURAL JOIN usuarios SET galletita = 'CADUCADA' WHERE Correcto = 1 GROUP BY DNI HAVING TIMESTAMPDIFF(second, NOW(), MAX(Time)) > 5;
+mysqli_query($dbconnect, $sq);
 $galletita = $_COOKIE["IdentComo"];
-$q = "Select * from usuarios WHERE DNI='".$galletita."'";
+$q = "Select * from usuarios WHERE galletita='".$galletita."'";
 $r=mysqli_fetch_assoc(mysqli_query($dbconnect, $q));
 echo '<div class="cajamoddatos">
 <form action="update.php" name="update" method="post">

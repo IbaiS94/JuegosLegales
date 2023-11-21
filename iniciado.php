@@ -31,9 +31,10 @@ if ($dbconnect->connect_error){
 
 	$q2 = "INSERT INTO logins (Correcto, DNI, `IP1`, IP2) VALUES (1, '$DNI', '$ip1', '$ip2')";
         mysqli_query($dbconnect, $q2);
-        
-        setcookie("IdentComo",$dame['DNI'],time()+10000);
-        setcookie("Usuario",$dame['Nombre'],time()+10000);
+        $id = base64_encode(random_bytes(40));
+	$q3 = "UPDATE usuarios SET galletita = '".$id."' WHERE DNI = '".$DNI."'";
+        mysqli_query($dbconnect, $q3);
+        setcookie("IdentComo",$id,time()+3000, '/');
 
         echo ' <!DOCTYPE html>
                 <html>
