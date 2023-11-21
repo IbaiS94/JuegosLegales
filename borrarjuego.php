@@ -1,5 +1,25 @@
 <?php
 header('X-Frame-Options: DENV');
+header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
+
+session_start();
+
+// Generar un token CSRF si no está definido
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generar un token aleatorio
+    setcookie('csrf_token', $_SESSION['csrf_token'], time() + 3600, '/', 'dominio.com', false); // Modifica 'dominio.com' según tu configuración
+
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        exit();
+    }
+
+    // Procesamiento del formulario...
+} else {
+    // Manejo de otra solicitud o redirección si es necesario
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,10 +48,10 @@ header('X-Frame-Options: DENV');
 
 <h2>Borrar juego</h2>
         
-        <div class="cajaborrado">
-        <form action="borrando.php" name="borrar" method="post">
-            <br>
-            <?php
+<div class="cajaborrado">
+    <form action="borrando.php" name="borrar" method="post">
+        <br>
+        <?php
                 /*include 'juegos.php';*/
                 /*$nom = $nombre;*/
                 $nomjuego = strip_tags(htmlspecialchars($_POST['Nombre'], ENT_QUOTES, 'UTF-8'));
@@ -40,11 +60,13 @@ header('X-Frame-Options: DENV');
                 echo $nomjuego;
                 echo "'?<br><br>";
             ?>
-            <input type='hidden' name='nom' value=" <?php echo $nomjuego; ?> ">
-            <input class="botongeneral" type="submit" name="borrar" value="Borrar">
-        </form>
-        </div>
-</body>
+            
 
+       <input type='hidden' name='nom' value=" <?php echo $nomjuego; ?> ">
+       <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+            <input class="botongeneral" type="submit" name="borrar" value="Borrar">
+    </form>
+</div>
+</body>
 </html>
 

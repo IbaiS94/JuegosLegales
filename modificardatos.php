@@ -1,5 +1,11 @@
 <?php
 header('X-Frame-Options: DENV');
+session_start();
+
+// Generar un token CSRF si no está definido
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generar un token aleatorio
+}
 ?>
 
 <!DOCTYPE html>

@@ -1,5 +1,23 @@
 <?php
 header('X-Frame-Options: DENV');
+header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
+
+session_start();
+
+// Generar un token CSRF si no está definido
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generar un token aleatorio
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        exit();
+    }
+
+    // Procesamiento del formulario...
+} else {
+    // Manejo de otra solicitud o redirección si es necesario
+}
 ?>
 <!DOCTYPE html>
 <html>

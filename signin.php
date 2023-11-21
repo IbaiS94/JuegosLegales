@@ -1,5 +1,23 @@
 <?php
 header('X-Frame-Options: DENV');
+header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
+
+session_start();
+
+// Generar un token CSRF si no está definido
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generar un token aleatorio
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        exit();
+    }
+
+    // Procesamiento del formulario...
+} else {
+    // Manejo de otra solicitud o redirección si es necesario
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,9 +31,9 @@ header('X-Frame-Options: DENV');
 <body>
 
 <div class="toptitle">
-<img src="images/skullspining.png" alt="skull" style="float:left;">
-<img src="images/skullspining.png" alt="skull" style="float:right;">
-<h1>Juegos Legales</h1>
+    <img src="images/skullspining.png" alt="skull" style="float:left;">
+    <img src="images/skullspining.png" alt="skull" style="float:right;">
+    <h1>Juegos Legales</h1>
 </div>
 
 <div class="topmenu">
@@ -30,11 +48,12 @@ header('X-Frame-Options: DENV');
 <h2>Registrarse</h2>
 
 <div class="cajaregistro">
-<form action="registrado.php" name="registro" method="post">
-    <br>
-    <label for="nombre"><b>Nombre</b></label>
-    <input type="text" name="nombre" placeholder="Ej: Carlos">
-    <br>
+    <form action="registrado.php" name="registro" method="post">
+        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+        <br>
+        <label for="nombre"><b>Nombre</b></label>
+        <input type="text" name="nombre" placeholder="Ej: Carlos">
+        <br>
     <label for="apellido"><b>Apellido</b></label>
     <input type="text" name="apellido" placeholder="Ej: Sologuestoa">
     <br>
@@ -53,14 +72,12 @@ header('X-Frame-Options: DENV');
     <label class="espaciarder42" for="email"><b>Email</b></label>
     <input type="email" style="text-transform: lowercase" name="email" placeholder="ejemplo@email.com">
 
-    <input class="botongeneral" type="button" name="enviar" value="Enviar" onclick="comprobardatos()">
-</form>
-
-<p class="letrapequeña">&iquest;Ya tienes cuenta?</p>
-<a class="letrapequeña" href="login.html">Inicia sesi&oacute;n</a>
+        <input class="botongeneral" type="submit" name="enviar" value="Enviar">
+    </form>
+    <p class="letrapequeña">¿Ya tienes cuenta?</p>
+    <a class="letrapequeña" href="login.html">Inicia sesión</a>
 </div>
 
-
 </body>
-
 </html>
+

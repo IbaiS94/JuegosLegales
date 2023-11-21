@@ -1,6 +1,8 @@
 <?php
 
 header('X-Frame-Options: DENV');
+header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
+
 
 session_start();
 
