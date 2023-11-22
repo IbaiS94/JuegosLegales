@@ -54,14 +54,25 @@ $dbconnect=mysqli_connect($host,$usuario,$contrasena,$maria);
 if($dbconnect->connect_error){
 	die("error de conexion");
 }
-$fecha_actual = date("Y-m-d H:i:s");
-$sq = "UPDATE logins NATURAL JOIN usuarios SET galletita = 'CADUCADA' WHERE Correcto = 1 AND DATEDIFF(second, NOW(), MAX(Time)) > 5 GROUP BY DNI";
-mysqli_query($dbconnect, $sq);
+$sq = "UPDATE usuarios
+SET galletita = 'CADUCADA'
+WHERE DNI IN (
+    SELECT DNI
+    FROM logins
+    WHERE Correcto = 1
+    GROUP BY DNI
+    HAVING TIMESTAMPDIFF(SECOND, MAX(logins.Time), NOW()) > 3000
+);
+";
+if(mysqli_query($dbconnect, $sq)){
 
 $galletita = $_COOKIE["IdentComo"];
 $q = "SELECT * FROM usuarios WHERE galletita='" . $galletita . "'";
 $r = mysqli_fetch_assoc(mysqli_query($dbconnect, $q));
-
+if($r==NULL){
+echo "<script type='text/javascript'>alert('Parece que su sesión ha caducado, vuelva a iniciar sesión');</script>";
+}
+}
 echo '<div class="cajamoddatos">
     <form action="update.php" name="update" method="post">
         <br>
