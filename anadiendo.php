@@ -1,5 +1,5 @@
 <?php
-header('X-Frame-Options: DENV');
+header('X-Frame-Options: DENY');
 ?>
 <!DOCTYPE html>
 <html>

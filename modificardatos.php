@@ -1,10 +1,21 @@
 <?php
-header('X-Frame-Options: DENV');
+header('X-Frame-Options: DENY');
 session_start();
+
 
 // Generar un token CSRF si no está definido
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generar un token aleatorio
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        exit();
+    }
+
+    // Procesamiento del formulario...
+} else {
+    // Manejo de otra solicitud o redirección si es necesario
 }
 ?>
 
@@ -44,17 +55,19 @@ if($dbconnect->connect_error){
 	die("error de conexion");
 }
 $fecha_actual = date("Y-m-d H:i:s");
-$sq= "UPDATE logins NATURAL JOIN usuarios SET galletita = 'CADUCADA' WHERE Correcto = 1 AND DATEDIFF(second, NOW(), MAX(Time)) > 5 GROUP BY DNI";//UPDATE logins NATURAL JOIN usuarios SET galletita = 'CADUCADA' WHERE Correcto = 1 GROUP BY DNI HAVING TIMESTAMPDIFF(second, NOW(), MAX(Time)) > 5;
+$sq = "UPDATE logins NATURAL JOIN usuarios SET galletita = 'CADUCADA' WHERE Correcto = 1 AND DATEDIFF(second, NOW(), MAX(Time)) > 5 GROUP BY DNI";
 mysqli_query($dbconnect, $sq);
+
 $galletita = $_COOKIE["IdentComo"];
-$q = "Select * from usuarios WHERE galletita='".$galletita."'";
-$r=mysqli_fetch_assoc(mysqli_query($dbconnect, $q));
+$q = "SELECT * FROM usuarios WHERE galletita='" . $galletita . "'";
+$r = mysqli_fetch_assoc(mysqli_query($dbconnect, $q));
+
 echo '<div class="cajamoddatos">
-<form action="update.php" name="update" method="post">
-    <br>
-    <label for="nombre"><b>Nombre</b></label>
-    <input type="text" value="'.$r["Nombre"].'" name="nombre" placeholder="Ej: Carlos">
-    <br>
+    <form action="update.php" name="update" method="post">
+        <br>
+        <label for="nombre"><b>Nombre</b></label>
+        <input type="text" value="' . $r["Nombre"] . '" name="nombre" placeholder="Ej: Carlos">
+        <br>
     <label for="apellido"><b>Apellido</b></label>
     <input type="text" value="'.$r["Apellido"].'" name="apellido" placeholder="Ej: Sologuestoa">
     <br>
@@ -75,14 +88,13 @@ echo '<div class="cajamoddatos">
     <br>
     <label class="bloquenomlargo" for="pass2"><b>Contrase&ntilde;a<br>nueva</b></label>
     <input type="password" name="pass2">
+        <input type="hidden" name="csrf_token" value="' . $_SESSION['csrf_token'] . '">
+        <input class="botongeneral" type="submit" name="enviar" value="Enviar">
+    </form>
+</div>';
 
-    <input class="botongeneral" type="button" name="enviar" value="Enviar" onclick="comprobar2()">
-</form>';
 mysqli_close($dbconnect);
 ?>
-</div>
-
 
 </body>
-
 </html>
