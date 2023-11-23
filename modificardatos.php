@@ -73,6 +73,7 @@ if($r==NULL){
 echo "<script type='text/javascript'>alert('Parece que su sesión ha caducado, vuelva a iniciar sesión');</script>";
 }
 }
+
 echo '<div class="cajamoddatos">
     <form action="update.php" name="update" method="post">
         <br>
