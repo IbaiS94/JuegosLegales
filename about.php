@@ -1,14 +1,10 @@
 <?php
-session_start();
 header('X-Frame-Options: DENY');
-header("Content-Security-Policy: default-src 'self' test.mailsite.com; script-src 'self'; style-src 'self'; img-src 'self';");
+header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; form-action 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://apis.google.com;">
 <title>Juegos Legales</title>
 <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
