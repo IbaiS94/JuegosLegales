@@ -44,6 +44,9 @@ if($dbconnect->connect_error){
     		<a href=juegos.php class='enlacecentral'>Volver a Juegos</a>
     	</div>";
 }
+$galletita = $_COOKIE["IdentComo"];
+$q7 = "SELECT * FROM usuarios WHERE galletita='" . $galletita . "'";
+$result = mysqli_fetch_assoc(mysqli_query($dbconnect, $q7));
 $user=$_POST['nombre'];
 $apellido=$_POST['apellido'];
 $dni=$_POST['dni'];
@@ -52,11 +55,9 @@ $fechan=$_POST['fechanac'];
 $email=$_POST['email'];
 $pwold=$_POST['pass'];
 $pnew=$_POST['pass2'];
-$dniviejo=$_COOKIE["IdentComo"];
-$qcontra = "Select * from usuarios WHERE DNI='".$dniviejo."'" ;
-$rcontra=mysqli_fetch_assoc(mysqli_query($dbconnect, $qcontra));
-if(strcmp($rcontra["PW"],$pwold)==0){
-$qupdate = "UPDATE usuarios SET Nombre='".$user."', Apellido='".$apellido."', DNI='".$dni."', Telefono='".$tel."', Fechanac='".$fechan."', email='".$email."', PW='".$pnew."' WHERE DNI='".$dniviejo."'";
+$pnewhash=password_hash($pwnew,PASSWORD_BCRYPT);
+if(password_verify($pwold,$result["PW"])){
+$qupdate = "UPDATE usuarios SET Nombre='".$user."', Apellido='".$apellido."', DNI='".$dni."', Telefono='".$tel."', Fechanac='".$fechan."', email='".$email."', PW='".$pnewhash."' WHERE galletita='".$galletita."'";
 echo "<h2>Usuario actualizado</h2>
     	<div class='cajaborrado'>
     		<br>
