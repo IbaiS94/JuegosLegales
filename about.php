@@ -1,10 +1,31 @@
 <?php
+session_start();
 header('X-Frame-Options: DENY');
-header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
+header("Content-Security-Policy: default-src 'self' test.mailsite.com; script-src 'self'; style-src 'self'; img-src 'self';");
+if(isset($_POST['botonadios'])) { 
+$host = "db";
+$usuario = "juegosacceso";
+$contrasena = "admin";
+$maria = "juegos";
+$dbconnect=mysqli_connect($host,$usuario,$contrasena,$maria);
+$sql = "UPDATE usuarios
+        SET galletita = 'CADUCADA'
+        WHERE galletita = ?";
+$preparar = $dbconnect->prepare($sql);
+$preparar->bind_param('s', $_COOKIE['IdentComo']);
+$preparar->execute();
+$preparar->close();
+            setcookie("IdentComo", "", time()-3000);
+            setcookie("Nombre", "", time()-3000);
+ mysqli_close($dbconnect);
+        }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; form-action 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://apis.google.com;">
 <title>Juegos Legales</title>
 <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
@@ -16,6 +37,12 @@ header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style
 <img src="images/skullspining.png" alt="skull" style="float:left;">
 <img src="images/skullspining.png" alt="skull" style="float:right;">
 <h1>Juegos Legales</h1>
+<?php
+            if (isset($_COOKIE['Nombre'])) {
+                echo '<p class="saludos">Hola, ' . $_COOKIE["Nombre"] . '!</p> 
+                <form method="post"> <input class="botonadios" type="submit" name="botonadios" value="Cerrar Sesión?">';
+            }
+            ?>
 </div>
 
 <!-- <h3>La legalidad es lo primero</h3> -->

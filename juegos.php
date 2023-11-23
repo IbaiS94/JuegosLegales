@@ -20,7 +20,25 @@ if (!$conn) {
 $lista = mysqli_query($conn, "SELECT * FROM juegosAnadidos");
 
 if ($lista) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generar un token aleatorio
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); 
+
+if(isset($_POST['botonadios'])) { 
+$host = "db";
+$usuario = "juegosacceso";
+$contrasena = "admin";
+$maria = "juegos";
+$dbconnect=mysqli_connect($host,$usuario,$contrasena,$maria);
+$sql = "UPDATE usuarios
+        SET galletita = 'CADUCADA'
+        WHERE galletita = ?";
+$preparar = $dbconnect->prepare($sql);
+$preparar->bind_param('s', $_COOKIE['IdentComo']);
+$preparar->execute();
+$preparar->close();
+            setcookie("IdentComo", "", time()-3000);
+            setcookie("Nombre", "", time()-3000);
+ mysqli_close($dbconnect);
+        }
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +53,12 @@ if ($lista) {
         <img src="images/skullspining.png" alt="skull" style="float:left;">
         <img src="images/skullspining.png" alt="skull" style="float:right;">
         <h1>Juegos Legales</h1>
+        <?php
+            if (isset($_COOKIE['Nombre'])) {
+                echo '<p class="saludos">Hola, ' . $_COOKIE["Nombre"] . '!</p> 
+                <form method="post"> <input class="botonadios" type="submit" name="botonadios" value="Cerrar Sesión?">';
+            }
+            ?>
     </div>
 
     <div class="topmenu">

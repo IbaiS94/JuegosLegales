@@ -184,3 +184,23 @@ table{
     color: white;
     background-color: rgba(200,0,255,1);
 }
+.tovarich{
+    display: flex;
+    align-items: center;
+}
+.botonadios{
+	    width: 140px;
+            height: 30px; 
+            border: 1px solid #ccc; 
+            background-color: transparent;
+            color: #222; 
+            opacity: 0.7; 
+            margin-bottom: 2%;
+            font-size: 20px;
+}
+.saludos{
+            color: #222; 
+            opacity: 0.7;
+            font-size: 20px;
+            margin-bottom: 0%; 
+}

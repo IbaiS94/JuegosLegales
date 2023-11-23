@@ -36,6 +36,7 @@ if ($dbconnect->connect_error){
 	$q3 = "UPDATE usuarios SET galletita = '".$id."' WHERE DNI = '".$DNI."'";
         mysqli_query($dbconnect, $q3);
         setcookie("IdentComo",$id,time()+3000, '/');
+        setcookie("Nombre",$dame['Nombre'],time()+3000, '/');
 
         echo ' <!DOCTYPE html>
                 <html>
@@ -53,10 +54,10 @@ if ($dbconnect->connect_error){
                 <div class="topmenu">
                     <a href="index.php">Home</a>
                     <a href="juegos.php">Juegos</a>
-                    <a href="login.html">Log in</a>
-                    <a href="signin.html">Sign in</a>
+                    <a href="login.php">Log in</a>
+                    <a href="signin.php">Sign in</a>
                     <a href="modificardatos.php">Datos personales</a>
-                    <a href="about.html">About</a>
+                    <a href="about.php">About</a>
                 </div>
 
                 <h2>Usuario identificado</h2>
