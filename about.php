@@ -1,7 +1,6 @@
 <?php
 session_start();
 header('X-Frame-Options: DENY');
-header("Content-Security-Policy: default-src 'self' test.mailsite.com; script-src 'self'; style-src 'self'; img-src 'self';");
 if(isset($_POST['botonadios'])) { 
 $host = "db";
 $usuario = "juegosacceso";
