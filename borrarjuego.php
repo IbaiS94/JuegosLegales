@@ -7,7 +7,7 @@ session_start();
 // Generar un token CSRF si no está definido
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generar un token aleatorio
-    setcookie('csrf_token', $_SESSION['csrf_token'], time() + 3600, '/', 'dominio.com', false); // Modifica 'dominio.com' según tu configuración
+    setcookie('csrf_token', $_SESSION['csrf_token'], time() + 3600, '/', 'dominio.com', false,true,'Strict'); // Modifica 'dominio.com' según tu configuración
 
 }
 

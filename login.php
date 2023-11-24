@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ALL);
 ini_set('display_errors', 1);
 header('X-Frame-Options: DENY');
 header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
