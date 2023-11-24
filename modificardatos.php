@@ -1,3 +1,41 @@
+<?php
+header('X-Frame-Options: DENY');
+session_start();
+
+
+// Generar un token CSRF si no está definido
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generar un token aleatorio
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        exit();
+    }
+
+    // Procesamiento del formulario...
+} else {
+    // Manejo de otra solicitud o redirección si es necesario
+}
+if(isset($_POST['botonadios'])) { 
+$host = "db";
+$usuario = "juegosacceso";
+$contrasena = "admin";
+$maria = "juegos";
+$dbconnect=mysqli_connect($host,$usuario,$contrasena,$maria);
+$sql = "UPDATE usuarios
+        SET galletita = 'CADUCADA'
+        WHERE galletita = ?";
+$preparar = $dbconnect->prepare($sql);
+$preparar->bind_param('s', $_COOKIE['IdentComo']);
+$preparar->execute();
+$preparar->close();
+            setcookie("IdentComo", "", time()-3000);
+            setcookie("Nombre", "", time()-3000);
+ mysqli_close($dbconnect);
+        }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,15 +50,19 @@
 <img src="images/skullspining.png" alt="skull" style="float:left;">
 <img src="images/skullspining.png" alt="skull" style="float:right;">
 <h1>Juegos Legales</h1>
+ <?php if (isset($_COOKIE['Nombre'])) {
+                echo '<p class="saludos">Hola, ' . $_COOKIE["Nombre"] . '!</p> 
+                <form method="post"> <input class="botonadios" type="submit" name="botonadios" value="Cerrar Sesión?">';
+            } ?>
 </div>
 
 <div class="topmenu">
     <a href="index.php">Home</a>
     <a href="juegos.php">Juegos</a>
-    <a href="login.html">Log in</a>
-    <a href="signin.html">Sign in</a>
+    <a href="login.php">Log in</a>
+    <a href="signin.php">Sign in</a>
     <a href="modificardatos.php">Datos personales</a>
-    <a href="about.html">About</a>
+    <a href="about.php">About</a>
 </div>
 
 <h2>Modificar datos</h2>
@@ -33,15 +75,34 @@ $dbconnect=mysqli_connect($host,$usuario,$contrasena,$maria);
 if($dbconnect->connect_error){
 	die("error de conexion");
 }
+$sq = "UPDATE usuarios
+SET galletita = 'CADUCADA'
+WHERE DNI IN (
+    SELECT DNI
+    FROM logins
+    WHERE Correcto = 1
+    GROUP BY DNI
+    HAVING TIMESTAMPDIFF(SECOND, MAX(logins.Time), NOW()) > 3000
+);
+";
 $galletita = $_COOKIE["IdentComo"];
-$q = "Select * from usuarios WHERE DNI='".$galletita."'";
-$r=mysqli_fetch_assoc(mysqli_query($dbconnect, $q));
+$sameip = "SELECT MAX(logins.Time), IP1 FROM logins WHERE Correcto = 1 AND DNI IN ( SELECT DNI FROM usuarios WHERE galletita = '".$galletita."')";
+$rSameip = mysqli_fetch_assoc(mysqli_query($dbconnect, $sameip)); 
+if(mysqli_query($dbconnect, $sq) && $rSameip['IP1'] == $_SERVER['REMOTE_ADDR'] ){
+
+$q = "SELECT * FROM usuarios WHERE galletita='" . $galletita . "'";
+$r = mysqli_fetch_assoc(mysqli_query($dbconnect, $q));
+if($r==NULL){
+echo "<script type='text/javascript'>alert('Parece que su sesión ha caducado, vuelva a iniciar sesión');</script>";
+}
+}
+
 echo '<div class="cajamoddatos">
-<form action="update.php" name="update" method="post">
-    <br>
-    <label for="nombre"><b>Nombre</b></label>
-    <input type="text" value="'.$r["Nombre"].'" name="nombre" placeholder="Ej: Carlos">
-    <br>
+    <form action="update.php" name="update" method="post">
+        <br>
+        <label for="nombre"><b>Nombre</b></label>
+        <input type="text" value="' . $r["Nombre"] . '" name="nombre" placeholder="Ej: Carlos">
+        <br>
     <label for="apellido"><b>Apellido</b></label>
     <input type="text" value="'.$r["Apellido"].'" name="apellido" placeholder="Ej: Sologuestoa">
     <br>
@@ -62,14 +123,13 @@ echo '<div class="cajamoddatos">
     <br>
     <label class="bloquenomlargo" for="pass2"><b>Contrase&ntilde;a<br>nueva</b></label>
     <input type="password" name="pass2">
+        <input type="hidden" name="csrf_token" value="' . $_SESSION['csrf_token'] . '">
+        <input class="botongeneral" type="submit" name="enviar" value="Enviar">
+    </form>
+</div>';
 
-    <input class="botongeneral" type="button" name="enviar" value="Enviar" onclick="comprobar2()">
-</form>';
 mysqli_close($dbconnect);
 ?>
-</div>
-
 
 </body>
-
 </html>
