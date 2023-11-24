@@ -85,9 +85,11 @@ WHERE DNI IN (
     HAVING TIMESTAMPDIFF(SECOND, MAX(logins.Time), NOW()) > 3000
 );
 ";
-if(mysqli_query($dbconnect, $sq)){
-
 $galletita = $_COOKIE["IdentComo"];
+$sameip = "SELECT MAX(logins.Time), IP1 FROM logins WHERE Correcto = 1 AND DNI IN ( SELECT DNI FROM usuarios WHERE galletita = '".$galletita."')";
+$rSameip = mysqli_fetch_assoc(mysqli_query($dbconnect, $sameip)); 
+if(mysqli_query($dbconnect, $sq) && $rSameip['IP1'] == $_SERVER['REMOTE_ADDR'] ){
+
 $q = "SELECT * FROM usuarios WHERE galletita='" . $galletita . "'";
 $r = mysqli_fetch_assoc(mysqli_query($dbconnect, $q));
 if($r==NULL){
