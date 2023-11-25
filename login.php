@@ -70,10 +70,10 @@ $preparar->close();
             <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
             <br>
             <label class="espaciarder64" for="DNI"><b>DNI</b></label>
-            <input type="text" name="DNI" placeholder="DNI">
+            <input type="text" name="DNI" placeholder="DNI" onkeypress="return /[0-9A-Z-]/i.test(event.key)>
             <br>
             <label for="pw"><b>Contraseña</b></label>
-            <input type="password" name="pw" placeholder="Contraseña">
+            <input type="password" name="pw" placeholder="Contraseña" onkeypress="return /[0-9A-Za-z.?¿-¡!+*@#$%&]/i.test(event.key)">
             <br>
             <input class="botongeneral" type="submit" name="enviar" value="Enviar">
         </form>
