@@ -5,6 +5,7 @@ function comprobardatos(){
     var tel = document.registro.telefono.value;
     var fecha = document.registro.fechanac.value;
     var email = document.registro.email.value;
+    var pw = document.registro.pw.value; 
     
     //mas documentacion sobre regex: https://www.w3schools.com/jsref/jsref_obj_regexp.asp
 
@@ -120,12 +121,18 @@ function comprobardatos(){
         error = true;
     }
 
-    var x = /[abcdefghijklmnñopqrstuvwxyz0123456789.]@/;//(gmail.com|hotmail.com|yahoo.com|mailo.com|outlook.com|proton.me|protonmail.com|ikasle.ehu.eus|ehu.eus))/;
+    var x = /[abcdefghijklmnñopqrstuvwxyz0123456789.]@[abcdefghijklmnñopqrstuvwxyz]+.[a-z]{1,8}$/;//(gmail.com|hotmail.com|yahoo.com|mailo.com|outlook.com|proton.me|protonmail.com|ikasle.ehu.eus|ehu.eus))/;
     if(!x.test(email)||email.match(/\s/)){
         mensaje = mensaje.concat("El email debe ser del formato ejemplo@email.com. \n"); //y pertenecer a un proveedor conocido. \n")
         error = true;
     }
 
+    var x = /[')=]/;
+    if(x.test(pw)||pw.length<8){
+    	mensaje = mensaje.concat("Introduce una contraseña válida y de mínimo 8 caráteres. \n");
+        error = true;
+    }
+    
     if(error){
         window.alert(mensaje)
     }else{
