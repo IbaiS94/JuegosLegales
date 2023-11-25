@@ -51,13 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <br>
             <label for="nombre"><b>Nombre</b></label>
-            <input type="text" name="nombre" placeholder="Ej: Super Mario Bros">
+            <input type="text" name="nombre" placeholder="Ej: Super Mario Bros" onkeypress="return /[0-9A-Za-z-.¿?¡!]/i.test(event.key)>
             <br>
             <label for="desa"><b>Desarrollador</b></label>
-            <input type="text" name="desa" placeholder="Ej: Nintendo">
+            <input type="text" name="desa" placeholder="Ej: Nintendo" onkeypress="return /[0-9A-Za-z-'¿?¡!]/i.test(event.key)>
             <br>
             <label for="puntu"><b>Puntuaci&oacute;n</b></label>
-            <input type="number" name="puntu" max=10 placeholder="Ej: 9.5">
+            <input type="number" name="puntu" max=10 placeholder="Ej: 9.5" onkeypress="return /[0-9.]/i.test(event.key)>
             <br>
             <label for="gen"><b>G&eacute;nero</b></label>
             <select name="gen" id="gen">
@@ -68,10 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </select>
             <br>
             <label class="bloquenomlargo" for="anno"><b>A&ntilde;o de<br>lanzamiento</b></label>
-            <input type="number" name="anno" placeholder="Ej: 1985">
+            <input type="number" name="anno" placeholder="Ej: 1985" onkeypress="return /[0-9]/i.test(event.key)>
             <br>
             <label class="bloquenomlargo" for="link"><b>Link de<br>descarga</b></label>
-            <input type="text" name="link" placeholder="Ej: google.com">
+            <input type="text" name="link" placeholder="Ej: google.com" onkeypress="return /[0-9A-Z-.?¿/$%#~@]/i.test(event.key)>
             <input type="hidden" name="confirmar" value="confirmar">
             <input type="button" class="botongeneral" name="enviar" value="Enviar" onclick="comprobardatosjuego()">
         </form>
