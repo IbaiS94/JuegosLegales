@@ -5,6 +5,8 @@ function comprobar2(){
     var tel = document.update.telefono.value;
     var fecha = document.update.fechanac.value;
     var email = document.update.email.value;
+    var pw = document.update.pass.value;
+    var pw2 = document.update.pass2.value;
     
     //mas documentacion sobre regex: https://www.w3schools.com/jsref/jsref_obj_regexp.asp
 
@@ -119,12 +121,26 @@ function comprobar2(){
         error = true;
     }
 
-    var x = /[abcdefghijklmnñopqrstuvwxyz.]@/;  //(gmail.com|hotmail.com|yahoo.com|mailo.com|outlook.com|proton.me|protonmail.com))/;
+    var x = /[abcdefghijklmnñopqrstuvwxyz.]@[abcdefghijklmnñopqrstuvwxyz]+.[a-z]{1,8}$/;  //(gmail.com|hotmail.com|yahoo.com|mailo.com|outlook.com|proton.me|protonmail.com))/;
     if(!x.test(email)||email.match(/\s/)){
         mensaje = mensaje.concat("El email debe ser del formato ejemplo@email.com y pertenecer a un proveedor conocido. \n")
         error = true;
     }
 
+    var x = /[')=]/;
+    if(x.test(pw)||pw.length<8){
+    	mensaje = mensaje.concat("Introduce tu contraseña correctamente. \n");
+        error = true;
+    }
+    
+    if(pw.length>0){
+    	var x = /[')=]/;
+    	if(x.test(pw2)||pw.length<8){
+    		mensaje = mensaje.concat("Introduce una contraseña nueva válida y de mínimo 8 caráteres. \n");
+        	error = true;
+    	}
+    }
+    
     if(error){
         window.alert(mensaje)
     }else{
