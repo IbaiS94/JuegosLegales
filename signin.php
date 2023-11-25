@@ -75,22 +75,22 @@ $preparar->close();
         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
         <br>
         <label for="nombre"><b>Nombre</b></label>
-        <input type="text" name="nombre" placeholder="Ej: Carlos">
+        <input type="text" name="nombre" placeholder="Ej: Carlos" onkeypress="return /[a-zA-Z\s]/i.test(event.key)>
         <br>
     <label for="apellido"><b>Apellido</b></label>
-    <input type="text" name="apellido" placeholder="Ej: Sologuestoa">
+    <input type="text" name="apellido" placeholder="Ej: Sologuestoa" onkeypress="return /[a-zA-Z\s]/i.test(event.key)>
     <br>
     <label for="pw"><b>Contrase&ntilde;a</b></label>
-    <input type="password" name="pw" placeholder="Ej: seguridad123">
+    <input type="password" min=8 name="pw" placeholder="Ej: seguridad123 (8 car&aacute;cteres m&iacute;nimo)">
     <br>
     <label class="espaciarder64" for="dni"><b>DNI</b></label>
-    <input type="text" name="dni" placeholder="12345678-A">
+    <input type="text" max=10 name="dni" placeholder="12345678-A">
     <br>
     <label for="telefono"><b>Tel&eacute;fono</b></label>
-    <input type="tel" name="telefono" placeholder="123456789">
+    <input type="tel" max=9 name="telefono" placeholder="123456789">
     <br>
     <label class="bloquenomlargo" for="fechanac"><b>Fecha de<br>nacimiento</b></label>
-    <input type="text" name="fechanac" placeholder="AAAA-MM-DD">
+    <input type="text" max=10 name="fechanac" placeholder="AAAA-MM-DD">
     <br>
     <label class="espaciarder42" for="email"><b>Email</b></label>
     <input type="email" style="text-transform: lowercase" name="email" placeholder="ejemplo@email.com">
