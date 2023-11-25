@@ -13,11 +13,17 @@ function comprobardatosjuego(){
     if(nom.length==0){
     	error=true;
     	mensaje = mensaje.concat("Introduzca un nombre. \n")
+    }else if(nom.length>50){
+        error=true;
+        mensaje = mensaje.concat("Introduzca un nombre más corto. \n")
     }
     
     if(desa.length==0){
     	error=true;
     	mensaje = mensaje.concat("Introduzca un desarrollador. \n")
+    }else if(desa.length>50){
+        error=true;
+        mensaje = mensaje.concat("Introduzca un desarrollador más corto. \n")
     }
     
     if(y.test(puntu)||(puntu>10)||(puntu<0)||(puntu.length==0)){
@@ -35,6 +41,9 @@ function comprobardatosjuego(){
     if(link.length==0){
     	error=true;
     	mensaje = mensaje.concat("Introduzca un link. \n")
+        }else if(link.length>100){
+    	error=true;
+    	mensaje = mensaje.concat("Link demasiado largo, usa un link shortener. \n")
     }
 
 
