@@ -34,7 +34,15 @@ $maria = "juegos";
 $dbconnect=mysqli_connect($host,$usuario,$contrasena,$maria);
 if($dbconnect->connect_error){
 	die("error de conexion");
-}
+	echo "<h2>Juego no a&ntilde;adido</h2>
+    	<div class='cajaborrado'>
+    		<br>
+    		<p>Error al a&ntilde;adir el juego: " . mysqli_error($dbconnect);"</p>
+    		<br>
+    		<a href=juegos.php class='enlacecentral'>Volver a Juegos</a>
+    	</div>";
+}else{
+
 if(isset($_POST['confirmar'])) {
   $nombre = htmlspecialchars($_POST['nombre']);
   $desarrollador = htmlspecialchars($_POST['desa']);
@@ -42,8 +50,12 @@ if(isset($_POST['confirmar'])) {
   $genero = htmlspecialchars($_POST['gen']);
   $ano = htmlspecialchars($_POST['anno']);
   $link = htmlspecialchars($_POST['link']);
-$q = "INSERT INTO juegosAnadidos (Nombre, Desarrollador, Puntuacion, Genero, Ano, Link) VALUES ('$nombre', '$desarrollador', '$puntuacion','$genero','$ano','$link')";
-      if (mysqli_query($dbconnect, $q)) {
+	
+  //$q = "INSERT INTO juegosAnadidos (Nombre, Desarrollador, Puntuacion, Genero, Ano, Link) VALUES ('$nombre', '$desarrollador', '$puntuacion','$genero','$ano','$link')";
+  $stmt = $dbconnect->prepare("INSERT INTO juegosAnadidos (Nombre, Desarrollador, Puntuacion, Genero, Ano, Link) VALUES (?,?,?,?,?,?)");
+  $stmt->bind_param("ssdsis",$nombre,$desarrollador,$puntuacion,$genero,$ano,$link);
+      //if (mysqli_query($dbconnect, $q)) {
+      if ($stmt->execute()){
         echo "<h2>Juego a&ntilde;adido</h2>
     	<div class='cajaborrado'>
     		<br>
@@ -71,6 +83,8 @@ $q = "INSERT INTO juegosAnadidos (Nombre, Desarrollador, Puntuacion, Genero, Ano
     	</div>";
 } 
 mysqli_close($dbconnect);
+$stmt->close();
+}
 ?>
 
 </body>
