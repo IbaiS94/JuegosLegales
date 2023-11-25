@@ -48,14 +48,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $host = 'db';
         $db = 'juegos';
         $conn = mysqli_connect($host, $username, $password, $db) or die("No se pudo conectar con la base de datos.");
-        $resultado2 = mysqli_query($conn, "SELECT * FROM juegosAnadidos WHERE Nombre='".$nom."'"); 
-        $resultado = mysqli_fetch_assoc($resultado2);
-        $nomjuego = htmlspecialchars($resultado['Nombre'], ENT_QUOTES, 'UTF-8');
-        $desajuego = htmlspecialchars($resultado['Desarrollador'], ENT_QUOTES, 'UTF-8');
-        $puntujuego = htmlspecialchars($resultado['Puntuacion']);
-        $genjuego = htmlspecialchars($resultado['Genero']);
-        $anojuego = htmlspecialchars($resultado['Ano']);
-        $linkjuego = htmlspecialchars($resultado['Link']);
+        //$resultado2 = mysqli_query($conn, "SELECT * FROM juegosAnadidos WHERE Nombre='".$nom."'"); 
+        //$resultado = mysqli_fetch_assoc($resultado2);
+        //$nomjuego = htmlspecialchars($resultado['Nombre'], ENT_QUOTES, 'UTF-8');
+        //$desajuego = htmlspecialchars($resultado['Desarrollador'], ENT_QUOTES, 'UTF-8');
+        //$puntujuego = htmlspecialchars($resultado['Puntuacion']);
+        //$genjuego = htmlspecialchars($resultado['Genero']);
+        //$anojuego = htmlspecialchars($resultado['Ano']);
+        //$linkjuego = htmlspecialchars($resultado['Link']);
+        $query = "SELECT * FROM juegosAnadidos WHERE Nombre=?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $nom);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($nomjuego,$desajuego,$puntujuego,$genjuego,$anojuego,$linkjuego);
+        $stmt->fetch();
     ?>
 
     <h2>Editar juego</h2>
