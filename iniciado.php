@@ -24,17 +24,38 @@ if ($dbconnect->connect_error){
     $DNI=$_POST['DNI'];
     $pwnohash=$_POST['pw'];
 
-    $q = "Select * from usuarios WHERE DNI='".$DNI."' ";//AND PW='".$pw."'" ;
-    $dame = mysqli_fetch_assoc(mysqli_query($dbconnect, $q));
-    $resultado=mysqli_query($dbconnect, $q);
+    //$q = "Select * from usuarios WHERE DNI='".$DNI."' ";//AND PW='".$pw."'" ;
+    //$dame = mysqli_fetch_assoc(mysqli_query($dbconnect, $q));
+    //$resultado=mysqli_query($dbconnect, $q);
+    $stmt = $dbconnect->prepare("Select * from usuarios WHERE DNI=?");
+    $stmt->bind_param("s",$DNI);
+    $stmt->execute();
+    $stmt->store_result();
+    $numrows = $stmt->num_rows;
+    $stmt = null;
+    $stmt = $dbconnect->prepare("Select * from usuarios WHERE DNI=?");
+    $stmt->bind_param("s",$DNI);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($nombd,$apebd,$pwbd,$dnibd,$telbd,$fechanacbd,$emailbd,$cookiebd);	
+    $dame = $stmt->fetch();
 
-    if ((mysqli_num_rows($resultado)==1)and(password_verify($pwnohash,$dame['PW']))) {
+    //if ((mysqli_num_rows($resultado)==1)and(password_verify($pwnohash,$dame['PW']))) {
+    if ((($numrows)==1)and(password_verify($pwnohash,$pwbd))) {
 
-	$q2 = "INSERT INTO logins (Correcto, DNI, `IP1`, IP2) VALUES (1, '$DNI', '$ip1', '$ip2')";
-        mysqli_query($dbconnect, $q2);
+	//$q2 = "INSERT INTO logins (Correcto, DNI, `IP1`, IP2) VALUES (1, '$DNI', '$ip1', '$ip2')";
+        //mysqli_query($dbconnect, $q2);
+	$stmt = null;
+	$stmt = $dbconnect->prepare("INSERT INTO logins (Correcto, DNI, IP1, IP2) VALUES (1, ?, ?, ?)");
+	$stmt->bind_param("sss",$dni,$ip1,$ip2);
+	$stmt->execute();
+	    
         $id = base64_encode(random_bytes(40));
-	$q3 = "UPDATE usuarios SET galletita = '".$id."' WHERE DNI = '".$DNI."'";
-        mysqli_query($dbconnect, $q3);
+	//$q3 = "UPDATE usuarios SET galletita = '".$id."' WHERE DNI = '".$DNI."'";
+        //mysqli_query($dbconnect, $q3);
+	$stmt = $dbconnect->prepare("UPDATE usuarios SET galletita =? WHERE DNI = ?");
+        $stmt->bind_param("ss",$id,$DNI);
+        $stmt->execute();
         setcookie("IdentComo",$id,time()+3000, '/');
         setcookie("Nombre",$dame['Nombre'],time()+3000, '/');
 
@@ -71,8 +92,11 @@ if ($dbconnect->connect_error){
                 </html>';
     } else {
     
-	$q2 = "INSERT INTO logins (Correcto, DNI, `IP1`, IP2) VALUES (0, '$DNI', '$ip1', '$ip2')";
-        mysqli_query($dbconnect, $q2);
+	//$q2 = "INSERT INTO logins (Correcto, DNI, `IP1`, IP2) VALUES (0, '$DNI', '$ip1', '$ip2')";
+        //mysqli_query($dbconnect, $q2);
+	$stmt = null;
+	$stmt = $dbconnect->prepare("INSERT INTO logins (Correcto, DNI, IP1, IP2) VALUES (0, ?, ?, ?)");
+	$stmt->bind_param("sss",$dni,$ip1,$ip2);
 
         echo ' <!DOCTYPE html>
                 <html>
@@ -109,6 +133,7 @@ if ($dbconnect->connect_error){
 }
 
 mysqli_close($dbconnect);
+$stmt->close();
 ?>
 </body>
 </html>
