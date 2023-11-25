@@ -90,9 +90,17 @@ $sameip = "SELECT MAX(logins.Time), IP1 FROM logins WHERE Correcto = 1 AND DNI I
 $rSameip = mysqli_fetch_assoc(mysqli_query($dbconnect, $sameip)); 
 if(mysqli_query($dbconnect, $sq) && $rSameip['IP1'] == $_SERVER['REMOTE_ADDR'] ){
 
-$q = "SELECT * FROM usuarios WHERE galletita='" . $galletita . "'";
-$r = mysqli_fetch_assoc(mysqli_query($dbconnect, $q));
-if($r==NULL){
+//$q = "SELECT * FROM usuarios WHERE galletita='" . $galletita . "'";
+//$r = mysqli_fetch_assoc(mysqli_query($dbconnect, $q));
+$q = "Select * from usuarios WHERE galletita=?";
+$stmt = $dbconnect->prepare($q);
+$stmt->bind_param("s",$galletita);
+$stmt->execute();
+$stmt->store_result();
+$stmt->bind_result($nombd,$apebd,$pwbd,$dnibd,$telbd,$fechanacbd,$emailbd,$cookiebd);
+$stmt->fetch();
+//if($r==NULL){
+if($cookiebd==NULL){
 echo "<script type='text/javascript'>alert('Parece que su sesión ha caducado, vuelva a iniciar sesión');</script>";
 }
 }
@@ -129,6 +137,7 @@ echo '<div class="cajamoddatos">
 </div>';
 
 mysqli_close($dbconnect);
+$stmt->close();
 ?>
 
 </body>
