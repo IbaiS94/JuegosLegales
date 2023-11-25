@@ -45,8 +45,17 @@ if($dbconnect->connect_error){
     	</div>";
 }
 $galletita = $_COOKIE["IdentComo"];
-$q7 = "SELECT * FROM usuarios WHERE galletita='" . $galletita . "'";
-$result = mysqli_fetch_assoc(mysqli_query($dbconnect, $q7));
+//$q7 = "SELECT * FROM usuarios WHERE galletita='" . $galletita . "'";
+//$result = mysqli_fetch_assoc(mysqli_query($dbconnect, $q7));
+//datos de bd
+$q7 = "SELECT * FROM usuarios WHERE galletita=?";
+$stmt = $dbconnect->prepare($q7);
+$stmt->bind_param("s",$galletita);
+$stmt->execute();
+$stmt->store_result();
+$stmt->bind_result($nombd,$apebd,$pwbd,$dnibd,$telbd,$fechanacbd,$emailbd,$cookiebd);
+$stmt->fetch();
+//datos introducidos
 $user=$_POST['nombre'];
 $apellido=$_POST['apellido'];
 $dni=$_POST['dni'];
@@ -56,8 +65,9 @@ $email=$_POST['email'];
 $pwold=$_POST['pass'];
 $pnew=$_POST['pass2'];
 $pnewhash=password_hash($pwnew,PASSWORD_BCRYPT);
-if(password_verify($pwold,$result["PW"])){
-$qupdate = "UPDATE usuarios SET Nombre='".$user."', Apellido='".$apellido."', DNI='".$dni."', Telefono='".$tel."', Fechanac='".$fechan."', email='".$email."', PW='".$pnewhash."' WHERE galletita='".$galletita."'";
+//if(password_verify($pwold,$result["PW"])){
+if(password_verify($pwold,$pwbd)){
+//$qupdate = "UPDATE usuarios SET Nombre='".$user."', Apellido='".$apellido."', DNI='".$dni."', Telefono='".$tel."', Fechanac='".$fechan."', email='".$email."', PW='".$pnewhash."' WHERE galletita='".$galletita."'";
 echo "<h2>Usuario actualizado</h2>
     	<div class='cajaborrado'>
     		<br>
@@ -65,7 +75,12 @@ echo "<h2>Usuario actualizado</h2>
     		<br>
     		<a href=juegos.php class='enlacecentral'>Volver a Juegos</a>
     	</div>";
-mysqli_query($dbconnect, $qupdate);
+//mysqli_query($dbconnect, $qupdate);
+$qupdate = "UPDATE usuarios SET Nombre=?, Apellido=?, DNI=?, Telefono=?, Fechanac=?, email=?, PW=? WHERE galletita=?";
+$stmt = null;
+$stmt = $dbconnect->prepare($qupdate);
+$stmt->bind_param("sssissss",$user,$apellido,$dni,$tel,$fechan,$email,$pnewhash,$galletita);
+$stmt->execute();
 }
 else{
 echo "<h2>Usuario no actualizado</h2>
@@ -77,6 +92,7 @@ echo "<h2>Usuario no actualizado</h2>
     	</div>";
 }
 mysqli_close($dbconnect);
+$stmt->close();
 ?>
 
 </body>
