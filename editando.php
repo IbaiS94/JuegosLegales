@@ -42,10 +42,12 @@ header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style
     $host='db';
     $db = 'juegos';
     $conn = mysqli_connect($host,$username,$password,$db) or die("No se ha podido conectar con la base de datos.");
-    $query = "UPDATE juegosAnadidos SET Nombre='".$nom."', Desarrollador='".$desa."', Puntuacion='".$puntu."', Genero='".$gen."', Ano='".$ano."', Link='".$link."' WHERE Nombre='".$nomviejo."'";
-    $resultado = mysqli_query($conn, $query);/*/devueve booleano*/
-    
-    
+    //$query = "UPDATE juegosAnadidos SET Nombre='".$nom."', Desarrollador='".$desa."', Puntuacion='".$puntu."', Genero='".$gen."', Ano='".$ano."', Link='".$link."' WHERE Nombre='".$nomviejo."'";
+    //$resultado = mysqli_query($conn, $query);/*/devueve booleano*/
+    $query = "UPDATE juegosAnadidos SET Nombre=?, Desarrollador=?, Puntuacion=?, Genero=?, Ano=?, Link=? WHERE Nombre=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ssdsiss",$nom,$desa,$puntu,$gen,$ano,$link,$nomviejo);
+    $resultado = $stmt->execute();//devuelve booleano
     
     if($resultado){
     	echo "<h2>Juego editado</h2>
@@ -65,6 +67,7 @@ header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style
     	</div>";
     }
 mysqli_close($conn);
+$stmt->close();
 ?>
 
 
