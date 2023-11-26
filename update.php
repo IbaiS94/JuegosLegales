@@ -1,6 +1,6 @@
 <?php
-header('X-Frame-Options: DENY');
-header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
+//header('X-Frame-Options: DENY');
+//header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
 
 ?>
 <!DOCTYPE html>
@@ -64,14 +64,13 @@ $fechan=$_POST['fechanac'];
 $email=$_POST['email'];
 $pwold=$_POST['pass'];
 $pnew=$_POST['pass2'];
-$pnewhash=password_hash($pwnew,PASSWORD_BCRYPT);
+$pnewhash=password_hash($pnew,PASSWORD_BCRYPT);
 //if(password_verify($pwold,$result["PW"])){
-if(password_verify($pwold,$pwbd)){
-//$qupdate = "UPDATE usuarios SET Nombre='".$user."', Apellido='".$apellido."', DNI='".$dni."', Telefono='".$tel."', Fechanac='".$fechan."', email='".$email."', PW='".$pnewhash."' WHERE galletita='".$galletita."'";
+if(password_verify($pwold,$pwbd) && $pnew!=""){
 echo "<h2>Usuario actualizado</h2>
     	<div class='cajaborrado'>
     		<br>
-    		<p>Se han actualizado tus datos correctamente.</p>
+    		<p>Se han actualizado tus datos correctamente, actualizando tu contraseña.</p>
     		<br>
     		<a href=juegos.php class='enlacecentral'>Volver a Juegos</a>
     	</div>";
@@ -80,6 +79,21 @@ $qupdate = "UPDATE usuarios SET Nombre=?, Apellido=?, DNI=?, Telefono=?, Fechana
 $stmt = null;
 $stmt = $dbconnect->prepare($qupdate);
 $stmt->bind_param("sssissss",$user,$apellido,$dni,$tel,$fechan,$email,$pnewhash,$galletita);
+$stmt->execute();
+}
+if(password_verify($pwold,$pwbd) && $pnew ==""){
+echo "<h2>Usuario actualizado</h2>
+    	<div class='cajaborrado'>
+    		<br>
+    		<p>Se han actualizado tus datos correctamente, sin actualizar tu contraseña.</p>
+    		<br>
+    		<a href=juegos.php class='enlacecentral'>Volver a Juegos</a>
+    	</div>";
+//mysqli_query($dbconnect, $qupdate);
+$qupdate = "UPDATE usuarios SET Nombre=?, Apellido=?, DNI=?, Telefono=?, Fechanac=?, email=? WHERE galletita=?";
+$stmt = null;
+$stmt = $dbconnect->prepare($qupdate);
+$stmt->bind_param("sssisss",$user,$apellido,$dni,$tel,$fechan,$email,$galletita);
 $stmt->execute();
 }
 else{
