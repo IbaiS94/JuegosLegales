@@ -1,6 +1,6 @@
 <?php
-//header('X-Frame-Options: DENY');
-//header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
+header('X-Frame-Options: DENY');
+header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
 
 ?>
 <!DOCTYPE html>
