@@ -1,7 +1,6 @@
 <?php
 header('X-Frame-Options: DENY');
 header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $host = "db";
 $usuario = "juegosacceso";
 $contrasena = "admin";
@@ -24,7 +23,7 @@ if ($dbconnect->connect_error){
 } else {
     $DNI=$_POST['DNI'];
     $pwnohash=$_POST['pw'];
-
+	if(strlen($DNI) < 11) {
     //$q = "Select * from usuarios WHERE DNI='".$DNI."' ";//AND PW='".$pw."'" ;
     //$dame = mysqli_fetch_assoc(mysqli_query($dbconnect, $q));
     //$resultado=mysqli_query($dbconnect, $q);
@@ -39,11 +38,11 @@ if ($dbconnect->connect_error){
     $stmt->execute();
     $stmt->store_result();
     $stmt->bind_result($nombd,$apebd,$pwbd,$dnibd,$telbd,$fechanacbd,$emailbd,$cookiebd);	
-    $dame = $stmt->fetch();
+    $dame = $stmt->fetch(); }
 
     //if ((mysqli_num_rows($resultado)==1)and(password_verify($pwnohash,$dame['PW']))) {
     if ((($numrows)==1)and(password_verify($pwnohash,$pwbd))) {
-
+		if(strlen($DNI) < 11) {
 	//$q2 = "INSERT INTO logins (Correcto, DNI, `IP1`, IP2) VALUES (1, '$DNI', '$ip1', '$ip2')";
         //mysqli_query($dbconnect, $q2);
 	$stmt = null;
@@ -59,7 +58,7 @@ if ($dbconnect->connect_error){
         $stmt->execute();
         setcookie("IdentComo",$id,time()+3000, '/');
         setcookie("Nombre",$nombd,time()+3000, '/');
-
+}
         echo ' <!DOCTYPE html>
                 <html>
                 <head>
@@ -95,11 +94,12 @@ if ($dbconnect->connect_error){
     
 	//$q2 = "INSERT INTO logins (Correcto, DNI, `IP1`, IP2) VALUES (0, '$DNI', '$ip1', '$ip2')";
         //mysqli_query($dbconnect, $q2);
+        	if(strlen($DNI) < 11) {
 	$stmt = null;
 	$stmt = $dbconnect->prepare("INSERT INTO logins (Correcto, DNI, IP1, IP2) VALUES (0, ?, ?, ?)");
 	$stmt->bind_param("sss",$DNI,$ip1,$ip2);
 	$stmt->execute();
-
+}
         echo ' <!DOCTYPE html>
                 <html>
                 <head>
@@ -136,7 +136,6 @@ if ($dbconnect->connect_error){
 
 mysqli_close($dbconnect);
 $stmt->close();
-}
 ?>
 </body>
 </html>
