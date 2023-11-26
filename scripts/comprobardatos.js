@@ -137,6 +137,5 @@ function comprobardatos(){
         window.alert(mensaje)
     }else{
         document.registro.submit();
-       // window.alert("mola")//debug
     }
 }
