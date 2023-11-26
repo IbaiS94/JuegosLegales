@@ -44,42 +44,38 @@ header('X-Frame-Options: DENY');
         $link = htmlspecialchars($_POST['link']);
 
         // Verificar que el nombre del archivo esté dentro de un directorio específico
-        $ruta_archivo = 'directorio_de_archivos/' . basename($link);
-
         // Comprobar si la ruta del archivo es válida
-        if (file_exists($ruta_archivo)) {
-            // Tu lógica para añadir el juego aquí
-            // No insertar la ruta del archivo en la base de datos, solo el nombre del archivo
-            // Ejemplo: INSERT INTO juegosAnadidos (Nombre, Desarrollador, Puntuacion, Genero, Ano, Link) VALUES (?,?,?,?,?,?)
-            echo "<h2>Juego añadido</h2>
-                <div class='cajaborrado'>
-                    <br>
-                    <p>Juego añadido correctamente.</p>
-                    <br>
-                    <a href='juegos.php' class='enlacecentral'>Volver a Juegos</a>
-                </div>";
-        } else {
-            echo "<h2>Juego no añadido</h2>
-                <div class='cajaborrado'>
-                    <br>
-                    <p>Error al añadir el juego: Ruta de archivo inválida.</p>
-                    <br>
-                    <a href='juegos.php' class='enlacecentral'>Volver a Juegos</a>
-                </div>";
-        }
+        $q = "INSERT INTO juegosAnadidos (Nombre, Desarrollador, Puntuacion, Genero, Ano, Link) VALUES ('$nombre', '$desarrollador', '$puntuacion','$genero','$ano','$link')";
+      if (mysqli_query($dbconnect, $q)) {
+        echo "<h2>Juego a&ntilde;adido</h2>
+    	<div class='cajaborrado'>
+    		<br>
+    		<p>Juego a&ntilde;adido correctamente.</p>
+    		<br>
+    		<a href=juegos.php class='enlacecentral'>Volver a Juegos</a>
+    	</div>";
     } else {
-        echo "<h2>Error</h2>
-            <div class='cajaborrado'>
-                <br>
-                <p>Algo salió mal.</p>
-                <br>
-                <a href='juegos.php' class='enlacecentral'>Volver a Juegos</a>
-            </div>";
-    }
+    	echo "<h2>Juego no a&ntilde;adido</h2>
+    	<div class='cajaborrado'>
+    		<br>
+    		<p>Error al a&ntilde;adir el juego: " . mysqli_error($dbconnect);"</p>
+    		<br>
+    		<a href=juegos.php class='enlacecentral'>Volver a Juegos</a>
+    	</div>";
+        //echo "Error al a&ntilde;adir el juego: " . mysqli_error($dbconnect);
+}
+}else{
+	echo "<h2>Error</h2>
+    	<div class='cajaborrado'>
+    		<br>
+    		<p>Algo fue mal.</p>
+    		<br>
+    		<a href=juegos.php class='enlacecentral'>Volver a Juegos</a>
+    	</div>";
+} 
 
     mysqli_close($dbconnect);
     ?>
-
 </body>
 </html>
 
