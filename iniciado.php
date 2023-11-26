@@ -1,6 +1,7 @@
 <?php
 header('X-Frame-Options: DENY');
 header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';");
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $host = "db";
 $usuario = "juegosacceso";
 $contrasena = "admin";
@@ -135,6 +136,7 @@ if ($dbconnect->connect_error){
 
 mysqli_close($dbconnect);
 $stmt->close();
+}
 ?>
 </body>
 </html>
