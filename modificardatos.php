@@ -101,7 +101,7 @@ $stmt->bind_result($nombd,$apebd,$pwbd,$dnibd,$telbd,$fechanacbd,$emailbd,$cooki
 $stmt->fetch();
 //if($r==NULL){
 }}
-if($cookiebd==NULL){
+else{
 echo "<script type='text/javascript'>alert('Parece que su sesión ha caducado, vuelva a iniciar sesión');</script>";
 }
 
@@ -109,22 +109,22 @@ echo '<div class="cajamoddatos">
     <form action="update.php" name="update" method="post">
         <br>
         <label for="nombre"><b>Nombre</b></label>
-        <input type="text" value="' . $r["Nombre"] . '" name="nombre" placeholder="Ej: Carlos">
+        <input type="text" value="' .$nombd. '" name="nombre" placeholder="Ej: Carlos">
         <br>
     <label for="apellido"><b>Apellido</b></label>
-    <input type="text" value="'.$r["Apellido"].'" name="apellido" placeholder="Ej: Sologuestoa">
+    <input type="text" value="'.$apebd.'" name="apellido" placeholder="Ej: Sologuestoa">
     <br>
     <label class="espaciarder64" for="dni"><b>DNI</b></label>
-    <input type="text" value="'.$r["DNI"].'" name="dni" placeholder="12345678-A">
+    <input type="text" value="'.$dnibd.'" name="dni" placeholder="12345678-A">
     <br>
     <label for="telefono"><b>Tel&eacute;fono</b></label>
-    <input type="tel" value="'.$r["Telefono"].'" name="telefono" placeholder="123456789">
+    <input type="tel" value="'.$telbd.'" name="telefono" placeholder="123456789">
     <br>
     <label class="bloquenomlargo" for="fechanac"><b>Fecha de<br>nacimiento</b></label>
-    <input type="text" value="'.$r["Fechanac"].'" name="fechanac" placeholder="01-01-0001">
+    <input type="text" value="'.$fechanacbd.'" name="fechanac" placeholder="01-01-0001">
     <br>
     <label class="espaciarder42" for="email"><b>Email</b></label>
-    <input type="email" value="'.$r["email"].'" name="email" placeholder="ejemplo@email.com">
+    <input type="email" value="'.$emailbd.'" name="email" placeholder="ejemplo@email.com">
     <br>
     <label class="bloquenomlargo" for="pass"><b>Contrase&ntilde;a<br>vieja</b></label>
     <input type="password" name="pass">
