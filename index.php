@@ -11,14 +11,14 @@ if (!isset($_SESSION['csrf_token'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-        exit();
+        //exit(); jijijija
     }
 
     // Procesamiento del formulario...
 } else {
     // Manejo de otra solicitud o redirección si es necesario
 }
-if(isset($_POST['botonadios'])) { 
+if(isset($_POST['botonadios'])) {
 $host = "db";
 $usuario = "juegosacceso";
 $contrasena = "admin";
@@ -34,6 +34,7 @@ $preparar->close();
             setcookie("IdentComo", "", time()-3000);
             setcookie("Nombre", "", time()-3000);
  mysqli_close($dbconnect);
+
         }
 ?>
 <!DOCTYPE html>
@@ -52,10 +53,10 @@ $preparar->close();
 <h1>Juegos Legales</h1>
 <?php
             if (isset($_COOKIE['Nombre'])) {
-                echo '<p class="saludos">Hola, ' . $_COOKIE["Nombre"] . '!</p> 
-                <form method="post"> <input class="botonadios" type="submit" name="botonadios" value="Cerrar Sesión?">';
+                echo '<p class="saludos">¡Hola, ' . $_COOKIE["Nombre"] . '!</p> 
+                <form method="post"> <input class="botonreduc" type="submit" name="botonadios" value="Cerrar Sesión"> </form>';
             }
-            ?>
+?>
 </div>
 
 <!-- <h3>La legalidad es lo primero</h3> -->
