@@ -33,8 +33,9 @@ header('X-Frame-Options: DENY');
     if (!$dbconnect) {
         die("Error de conexión: " . mysqli_connect_error());
     }
-
+	
     if (isset($_POST['confirmar'])) {
+    
         // Validar y limpiar la entrada de usuario
         $nombre = strip_tags(htmlspecialchars($_POST['nombre'], ENT_QUOTES, 'UTF-8'));
         $desarrollador = strip_tags(htmlspecialchars($_POST['desa'], ENT_QUOTES, 'UTF-8'));
@@ -45,8 +46,12 @@ header('X-Frame-Options: DENY');
 
         // Verificar que el nombre del archivo esté dentro de un directorio específico
         // Comprobar si la ruta del archivo es válida
-        $q = "INSERT INTO juegosAnadidos (Nombre, Desarrollador, Puntuacion, Genero, Ano, Link) VALUES ('$nombre', '$desarrollador', '$puntuacion','$genero','$ano','$link')";
-      if (mysqli_query($dbconnect, $q)) {
+        //$q = "INSERT INTO juegosAnadidos (Nombre, Desarrollador, Puntuacion, Genero, Ano, Link) VALUES ('$nombre', '$desarrollador', '$puntuacion','$genero','$ano','$link')";
+        $q = "INSERT INTO juegosAnadidos (Nombre, Desarrollador, Puntuacion, Genero, Ano, Link) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $dbconnect->prepare($q);
+        $stmt->bind_param("ssdsis",$nombre,$desarrollador,$puntuacion,$genero,$ano,$link);
+        //if (mysqli_query($dbconnect, $q)) {
+        if($stmt->execute()){
         echo "<h2>Juego a&ntilde;adido</h2>
     	<div class='cajaborrado'>
     		<br>
@@ -75,7 +80,7 @@ header('X-Frame-Options: DENY');
 } 
 
     mysqli_close($dbconnect);
+    $stmt->close();
     ?>
 </body>
 </html>
-
