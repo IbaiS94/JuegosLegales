@@ -95,7 +95,7 @@ $preparar->close();
     <label class="espaciarder42" for="email"><b>Email</b></label>
     <input type="email" style="text-transform: lowercase" name="email" placeholder="ejemplo@email.com">
 
-        <input class="botongeneral" type="submit" name="enviar" value="Enviar">
+        <input class="botongeneral" type="button" name="enviar" value="Enviar" onclick="comprobardatos()">
     </form>
     <p class="letrapequeña">¿Ya tienes cuenta?</p>
     <a class="letrapequeña" href="login.html">Inicia sesión</a>
