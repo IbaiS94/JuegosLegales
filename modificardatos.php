@@ -140,7 +140,7 @@ echo '<div class="cajamoddatos">
     <label class="bloquenomlargo" for="pass2"><b>Contrase&ntilde;a<br>nueva</b></label>
     <input type="password" name="pass2">
         <input type="hidden" name="csrf_token" value="' . $_SESSION['csrf_token'] . '">
-        <input class="botongeneral" type="submit" name="enviar" value="Enviar">
+        <input class="botongeneral" type="submit" name="enviar" value="Enviar" onclick="comprobar2()">
     </form>
 </div>';
 
