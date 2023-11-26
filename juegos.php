@@ -46,6 +46,7 @@ $preparar->close();
 <head>
     <title>Juegos Legales</title>
     <link rel="stylesheet" href="styles.css">
+      <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <!-- <link rel="icon" type="image/x-icon" href="skullspining.png"> -->
 </head>
 <body>
