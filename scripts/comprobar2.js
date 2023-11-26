@@ -145,6 +145,5 @@ function comprobar2(){
         window.alert(mensaje)
     }else{
         document.update.submit();
-       // window.alert("no mola >:(")//debug
     }
 }
