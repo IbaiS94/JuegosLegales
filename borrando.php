@@ -45,7 +45,7 @@ header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style
     $stmt->bind_param("s",$nom);
     
     //if($resultado){
-    if($stmt->execute());
+    if($stmt->execute()){
     	echo "<h2>Juego borrado</h2>
     	<div class='cajaborrado'>
     		<br>
