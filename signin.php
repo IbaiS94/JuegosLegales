@@ -75,10 +75,10 @@ $preparar->close();
         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
         <br>
         <label for="nombre"><b>Nombre</b></label>
-        <input type="text" name="nombre" placeholder="Ej: Carlos" onkeypress="return /[a-zA-Z\s]/i.test(event.key)>
+        <input type="text" name="nombre" placeholder="Ej: Carlos" onkeypress="return /[a-zA-Z\s]/i.test(event.key)">
         <br>
     <label for="apellido"><b>Apellido</b></label>
-    <input type="text" name="apellido" placeholder="Ej: Sologuestoa" onkeypress="return /[a-zA-Z\s]/i.test(event.key)>
+    <input type="text" name="apellido" placeholder="Ej: Sologuestoa" onkeypress="return /[a-zA-Z\s]/i.test(event.key)">
     <br>
     <label for="pw"><b>Contrase&ntilde;a</b></label>
     <input type="password" min=8 name="pw" placeholder="Ej: seguridad123 (8 car&aacute;cteres m&iacute;nimo)">
