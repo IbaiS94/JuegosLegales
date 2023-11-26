@@ -93,10 +93,10 @@ $preparar->close();
                 while ($fila = mysqli_fetch_assoc($lista)) {
                     echo "
                     <tr>
-                        <td>{$fila['Nombre']}</td>
-                        <td>{$fila['Puntuacion']}</td>
-                        <td>{$fila['Genero']}</td>
-                        <td>{$fila['Ano']}</td>
+                        <td>" . htmlspecialchars($fila['Nombre'], ENT_QUOTES) . "</td>
+    <td>" . htmlspecialchars($fila['Puntuacion'], ENT_QUOTES) . "</td>
+    <td>" . htmlspecialchars($fila['Genero'], ENT_QUOTES) . "</td>
+    <td>" . htmlspecialchars($fila['Ano'], ENT_QUOTES) . "</td>
                         <td>
                             <form action='editarjuego.php' method='post'>
                                 <input type='hidden' name='csrf_token' value='" . htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES) . "'>
