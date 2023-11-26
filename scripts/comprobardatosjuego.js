@@ -48,10 +48,8 @@ function comprobardatosjuego(){
 
 
     if(error){
-        //window.alert(anno.match(y))
         window.alert(mensaje)
     }else{
         document.formulario.submit();
-        //window.alert("mola")//debug
     }
 }
