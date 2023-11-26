@@ -86,8 +86,16 @@ WHERE DNI IN (
 );
 ";
 $galletita = $_COOKIE["IdentComo"];
-$sameip = "SELECT MAX(logins.Time), IP1 FROM logins WHERE Correcto = 1 AND DNI IN ( SELECT DNI FROM usuarios WHERE galletita = '".$galletita."')";
-$rSameip = mysqli_fetch_assoc(mysqli_query($dbconnect, $sameip)); 
+//$sameip = "SELECT MAX(logins.Time), IP1 FROM logins WHERE Correcto = 1 AND DNI IN ( SELECT DNI FROM usuarios WHERE galletita = '".$galletita."')";
+$q500 = "SELECT MAX(logins.Time) AS max_time, IP1 FROM logins WHERE Correcto = 1 AND DNI IN ( SELECT DNI FROM usuarios WHERE galletita = ?)";
+$declaracion = $dbconnect->prepare($q500);
+$declaracion->bind_param("s", $galletita);
+$declaracion->execute();
+$resultado = $declaracion->get_result();
+$rSameip = $resultado->fetch_assoc();
+$declaracion->close();
+
+//$rSameip = mysqli_fetch_assoc(mysqli_query($dbconnect, $sameip)); 
 if(mysqli_query($dbconnect, $sq) && $rSameip['IP1'] == $_SERVER['REMOTE_ADDR'] ){
 if($galletita != 'CADUCADA'){
 //$q = "SELECT * FROM usuarios WHERE galletita='" . $galletita . "'";
