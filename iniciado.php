@@ -47,7 +47,7 @@ if ($dbconnect->connect_error){
         //mysqli_query($dbconnect, $q2);
 	$stmt = null;
 	$stmt = $dbconnect->prepare("INSERT INTO logins (Correcto, DNI, IP1, IP2) VALUES (1, ?, ?, ?)");
-	$stmt->bind_param("sss",$dni,$ip1,$ip2);
+	$stmt->bind_param("sss",$DNI,$ip1,$ip2);
 	$stmt->execute();
 	    
         $id = base64_encode(random_bytes(40));
@@ -96,7 +96,8 @@ if ($dbconnect->connect_error){
         //mysqli_query($dbconnect, $q2);
 	$stmt = null;
 	$stmt = $dbconnect->prepare("INSERT INTO logins (Correcto, DNI, IP1, IP2) VALUES (0, ?, ?, ?)");
-	$stmt->bind_param("sss",$dni,$ip1,$ip2);
+	$stmt->bind_param("sss",$DNI,$ip1,$ip2);
+	$stmt->execute();
 
         echo ' <!DOCTYPE html>
                 <html>
@@ -106,7 +107,7 @@ if ($dbconnect->connect_error){
                 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
                 </head>
                 <body>
-                <div class="toptitle">
+                <div class="toptitleP">
                 <img src="images/skullspining.png" alt="skull" style="float:left;">
                 <img src="images/skullspining.png" alt="skull" style="float:right;">
                 <h1>Juegos Legales</h1>
