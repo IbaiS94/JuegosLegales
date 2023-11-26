@@ -29,6 +29,7 @@ header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style
 </div>
 
 <?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $host = "db";
 $usuario = "juegosacceso";
 $contrasena = "admin";
@@ -81,6 +82,7 @@ echo "<h2>Usuario registrado</h2>
 }
 mysqli_close($dbconnect);
 $stmt->close();
+}
 ?>
 
 </body>
