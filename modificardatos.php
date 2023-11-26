@@ -52,7 +52,7 @@ $preparar->close();
 <h1>Juegos Legales</h1>
  <?php if (isset($_COOKIE['Nombre'])) {
                 echo '<p class="saludos">Hola, ' . $_COOKIE["Nombre"] . '!</p> 
-                <form method="post"> <input class="botonadios" type="submit" name="botonadios" value="Cerrar Sesión?">';
+                <form method="post"> <input class="botonadios" type="submit" name="botonadios" value="Cerrar Sesión?"> </form>';
             } ?>
 </div>
 
