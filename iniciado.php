@@ -57,7 +57,7 @@ if ($dbconnect->connect_error){
         $stmt->bind_param("ss",$id,$DNI);
         $stmt->execute();
         setcookie("IdentComo",$id,time()+3000, '/');
-        setcookie("Nombre",$dame['Nombre'],time()+3000, '/');
+        setcookie("Nombre",$nombd,time()+3000, '/');
 
         echo ' <!DOCTYPE html>
                 <html>
@@ -84,7 +84,7 @@ if ($dbconnect->connect_error){
                 <h2>Usuario identificado</h2>
                     <div class="cajaborrado">
                         <br>
-                        <p>Te has identificado correctamente como '.$dame['Nombre'].'</p>
+                        <p>Te has identificado correctamente como '.$nombd.'</p>
                         <br>
                         <a href=juegos.php class="enlacecentral">Volver a Juegos</a>
                     </div>
