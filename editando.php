@@ -29,6 +29,7 @@ header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style
 </div>
 
 <?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     /*echo $_POST['nom'];*/
     $nomviejo = $_POST['nombreantiguo'];
     $nom = $_POST['nombre'];
@@ -68,6 +69,7 @@ header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style
     }
 mysqli_close($conn);
 $stmt->close();
+}
 ?>
 
 
