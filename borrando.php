@@ -38,12 +38,14 @@ header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style
     $host='db';
     $db = 'juegos';
     $conn = mysqli_connect($host,$username,$password,$db)  or die("No se pudo conectar con la base de datos.");
-    $query = "DELETE FROM juegosAnadidos WHERE Nombre='".$nom."'";
-    $resultado = mysqli_query($conn, $query);/*/devueve booleano*/
+    //$query = "DELETE FROM juegosAnadidos WHERE Nombre='".$nom."'";
+    //$resultado = mysqli_query($conn, $query);/*/devueve booleano*/
+    $query = "DELETE FROM juegosAnadidos WHERE Nombre=?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s",$nom);
     
-    
-    
-    if($resultado){
+    //if($resultado){
+    if($stmt->execute());
     	echo "<h2>Juego borrado</h2>
     	<div class='cajaborrado'>
     		<br>
@@ -62,6 +64,7 @@ header("Content-Security-Policy: default-src 'self'; img-src 'self' data:; style
     }
 
 mysqli_close($conn);
+$stmt->close();
 ?>
 
 
